@@ -70,7 +70,12 @@ const Auth = () => {
 
     useEffect(() => {
         if (token) {
-            navigate('/', { replace: true });
+            if (loginEmail === "admin@gmail.com") {
+
+                navigate('/admin/designer', { replace: true });
+            } else {
+                navigate('/', { replace: true });
+            }
         }
     }, [token]);
 

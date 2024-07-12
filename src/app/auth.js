@@ -19,8 +19,6 @@ const checkAuth = () => {
 
     axios.interceptors.request.use(
         function (config) {
-            // UPDATE: Add this code to show global loading indicator
-            // document.body.classList.add("loading-indicator");
             return config;
         },
         function (error) {
@@ -34,7 +32,6 @@ const checkAuth = () => {
             return response;
         },
         function (error) {
-            // document.body.classList.remove("loading-indicator");
             if (error.response?.status === 401) {
                 store.dispatch(logOut());
             }

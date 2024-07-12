@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const locales = [
-    "ja-JP", "en-US", "zh-CN"
+    "ja-JP", "en-US", "zh-CN", "ko-KR"
 ];
 
 function getFlagSrc(countryCode) {
@@ -24,7 +24,7 @@ const LanguageDropdown = () => {
     }, []);
 
     const handleLocaleChange = (locale) => {
-        (locale === 'ja-JP') ? i18n.changeLanguage('jap') : (locale === 'en-Us') ? i18n.changeLanguage('en') : i18n.changeLanguage('zh');
+        (locale === 'ja-JP') ? i18n.changeLanguage('jap') : (locale === 'en-Us') ? i18n.changeLanguage('en') : (locale === 'zh-CN') ? i18n.changeLanguage('zh') : i18n.changeLanguage('ko');
         setSelectedLocale(locale);
     };
 
