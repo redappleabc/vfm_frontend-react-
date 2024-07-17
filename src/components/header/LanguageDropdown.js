@@ -24,7 +24,19 @@ const LanguageDropdown = () => {
     }, []);
 
     const handleLocaleChange = (locale) => {
-        (locale === 'ja-JP') ? i18n.changeLanguage('jap') : (locale === 'en-Us') ? i18n.changeLanguage('en') : (locale === 'zh-CN') ? i18n.changeLanguage('zh') : i18n.changeLanguage('ko');
+        switch (locale) {
+            case 'ja-JP':
+                i18n.changeLanguage('jap');
+                break;
+            case 'en-US':
+                i18n.changeLanguage('en');
+                break;
+            case 'zh-CN':
+                i18n.changeLanguage('zh');
+                break;
+            default:
+                i18n.changeLanguage('ko');
+        }
         setSelectedLocale(locale);
     };
 

@@ -6,7 +6,7 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa";
 import { TbBrandPinterest } from "react-icons/tb";
 import { FaRegUser } from "react-icons/fa";
-import { ImProfile } from "react-icons/im";
+import { ImOffice, ImProfile } from "react-icons/im";
 import { BsCartPlus } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import { IoMailOutline } from "react-icons/io5";
@@ -26,6 +26,7 @@ import { toast } from 'react-toastify';
 const UserNav = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [t] = useTranslation();
     const { user, token } = useSelector(state => state.user);
     const { unreadMessages, cartLength } = useSelector(state => state.common)
     const location = useLocation();
@@ -177,7 +178,7 @@ const UserNav = () => {
                         return <div className={`group relative flex justify-start gap-x-6 p-4 text-sm leading-6  hover:translate-x-1 transition border duration-300`} key={index} >
                             <div className="flex-auto">
                                 <a className={`block font-semibold text-gray-900 border text-xl text-shadow-md shadow-gray-500 ${active === links?.title ? " text-shadow-none" : ""}`} onClick={() => handleClick(links?.pathname, links?.title)} >
-                                    {links.title}
+                                    {t(links.title)}
                                     <span className="absolute inset-0"> </span>
                                 </a>
                                 <p className="mt-1 text-gray-600">{links?.description}</p>
@@ -257,7 +258,7 @@ const UserNav = () => {
                                             <div className="flex-auto">
 
                                                 <a className={`block font-semibold text-gray-900`} onClick={() => handleClick(links.pathname, links?.title)}>
-                                                    {links.title}
+                                                    {t(links.title)}
                                                     <span className="absolute inset-0"></span>
                                                 </a>
                                                 <p className="mt-1 text-gray-600">{links?.description}</p>
