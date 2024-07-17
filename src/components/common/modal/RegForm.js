@@ -32,15 +32,15 @@ const RegFormModal = ({ open, onCancel, onConfirm }) => {
         const newErrors = {};
         if (username?.length === 0) {
             newErrors.username = 'ユーザー名が入力されていません。入力してください。';
-        } else if (username?.length > 20) {
+        } else if (username?.length > 18) {
             newErrors.username = '全角20文字以内';
         } else {
             newErrors.username = "";
         }
         if (bio?.length === 0) {
             newErrors.bio = '自己紹介が入力されていません。入力してください。!';
-        } else if (bio?.length > 50) {
-            newErrors.bio = '全角2000文字以内';
+        } else if (bio?.length > 98) {
+            newErrors.bio = '全角100文字以内';
         } else {
             newErrors.bio = "";
         }
@@ -64,6 +64,7 @@ const RegFormModal = ({ open, onCancel, onConfirm }) => {
                     placeholder="例）USER_00000"
                     className="w-full"
                     value={username}
+                    maxLength={20}
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 {errors.username && <p className="text-red-500 text-xs">{errors.username}</p>}
@@ -76,6 +77,7 @@ const RegFormModal = ({ open, onCancel, onConfirm }) => {
                             id="description"
                             rows={4}
                             value={bio}
+                            maxLength={100}
                             onChange={(e) => setBio(e.target.value)}
                         />
                         {errors.bio && <p className="text-red-500 text-xs">{errors.bio}</p>}

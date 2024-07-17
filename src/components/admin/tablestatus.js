@@ -23,8 +23,6 @@ const TableStatus = ({ categoryData }) => {
         });
     };
 
-
-
     const statusMap = {
         1: '相談',
         2: '応募',

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { LuLogIn } from "react-icons/lu";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa";
-import { TiSocialFacebook } from "react-icons/ti";
+import { TbBrandPinterest } from "react-icons/tb";
 import { FaRegUser } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { BsCartPlus } from "react-icons/bs";
@@ -130,9 +130,15 @@ const UserNav = () => {
             <nav className="w-full flex items-center p-6 lg:p-2 justify-end" aria-label="Global">
                 <div className="flex lg:hidden gap-5 flex-row">
                     <div className="flex-row flex gap-4">
-                        <Button shape="circle" icon={<TiSocialFacebook className="h-6 w-6 text-blue-500" />} />
-                        <Button shape="circle" icon={<FaInstagram className="h-6 w-6  text-blue-500" />} />
-                        <Button shape="circle" icon={<RiTwitterXFill className="h-6 w-6  text-blue-500" />} />
+                        <a href="https://www.pinterest.com/vfm_official" target="_blank" rel="noopener noreferrer">
+                            <Button shape="circle" icon={<TbBrandPinterest className="h-6 w-6 text-blue-500" />} />
+                        </a>
+                        <a href="https://www.instagram.com/vfm_official" target="_blank" rel="noopener noreferrer">
+                            <Button shape="circle" icon={<FaInstagram className="h-6 w-6  text-blue-500" />} />
+                        </a>
+                        <a href="https://www.x.com/VFM_japan" target="_blank" rel="noopener noreferrer">
+                            <Button shape="circle" icon={<RiTwitterXFill className="h-6 w-6  text-blue-500" />} />
+                        </a>
                         {user &&
                             <Dropdown overlay={mainMenu}
                                 arrow={{
@@ -190,7 +196,7 @@ const UserNav = () => {
                     }
 
                     <a href="https://www.pinterest.com/vfm_official" target="_blank" rel="noopener noreferrer">
-                        <Button shape="circle" icon={<TiSocialFacebook className="h-6 w-6 text-blue-500" />} />
+                        <Button shape="circle" icon={<TbBrandPinterest className="h-6 w-6 text-blue-500" />} />
                     </a>
                     <a href="https://www.instagram.com/vfm_official" target="_blank" rel="noopener noreferrer">
                         <Button shape="circle" icon={<FaInstagram className="h-6 w-6  text-blue-500" />} />

@@ -35,6 +35,7 @@ const Product = () => {
     const [contractId, setContractId] = useState(0);
     const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
+    const [favour, setFavour] = useState(false);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -116,6 +117,8 @@ const Product = () => {
         }
     }, [])
 
+    const handleFavourite = () => setFavour(!favour);
+
     return (
 
         <div className="py-24" ref={scrollContainerRef}>
@@ -135,15 +138,15 @@ const Product = () => {
                         <Carousel className="w-full">
                             <div>
                                 <img className="main-img-caro" src={product?.image} alt="wait" />
-                                <div className="favicon-product"><FavoriteBorderIcon /></div>
+                                <div className={favour ? "bg-red-500 favicon-product text-white" : "favicon-product"} onClick={handleFavourite}><FavoriteBorderIcon /></div>
                             </div>
                             <div>
                                 <img className="main-img-caro" src={product?.image} alt="wait" />
-                                <div className="favicon-product"><FavoriteBorderIcon /></div>
+                                <div className={favour ? "bg-red-500 favicon-product text-white" : "favicon-product"} onClick={handleFavourite}><FavoriteBorderIcon /></div>
                             </div>
                             <div>
                                 <img className="main-img-caro" src={product?.image} alt="wait" />
-                                <div className="favicon-product"><FavoriteBorderIcon /></div>
+                                <div className={favour ? "bg-red-500 favicon-product text-white" : "favicon-product"} onClick={handleFavourite}><FavoriteBorderIcon /></div>
                             </div>
                         </Carousel>
                     </div>

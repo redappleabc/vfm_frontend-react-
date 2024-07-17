@@ -101,6 +101,10 @@ video {
     font-size: 16px;
 }
 
+.ant-table-cell{
+    vertical-align: middle !important;
+}
+
 #main-section{
     margin-top: 10px;
 }
@@ -345,13 +349,13 @@ button {
 }
 
 .favicon-product {
-    background-color: #fff;
+    /* background-color: #fff; */
     height: 45px;
     width: 45px;
     border-radius: 50px;
     position: absolute;
-    bottom: 25px;
-    right: 100px;
+    bottom: 70px;
+    right: 80px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 11px;
 }

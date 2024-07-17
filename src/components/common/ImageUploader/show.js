@@ -13,7 +13,7 @@ const ImageShow = ({ img, isBack }) => {
                 onMouseLeave={() => setHovered(false)}
             >
                 {isBack ? <img
-                    className={`h-[300px] w-auto object-cover transition-opacity duration-500`}
+                    className={`h-[300px] w-full object-cover transition-opacity duration-500`}
                     src={img}
                     alt="wait"
                 /> :
