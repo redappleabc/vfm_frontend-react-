@@ -183,7 +183,7 @@ const ItemDetailPage = () => {
                         ご注文いただいてから納品までの流れは以下の通りです。ご注文からお届けまでの流れ（デジタルファッション版）
                         デジタルアイテム取得プロセス： ご注文受付（お支払完了後）→ デジタルアイテム制作・取得（1~4日）→ 品質確認 → 配信 上記は、あくまで参考程度であることにご留意ください。
                         好きなジャンルは、サイバーパンク・00年代風 よろしくお願いいたします。
-                        <p className="text-blue-600 cursor-pointer mt-2 pt-4" onClick={() => { profileOpen() }}>{t("とじる ...")}</p>
+                        <p className="text-blue-600 cursor-pointer mt-2 pt-4" onClick={() => { profileClose() }}>{t("とじる ...")}</p>
                     </div>
 
                 </div>

@@ -254,7 +254,7 @@ const Product = () => {
                     <p className="designer-title">{product?.creator?.username}</p>
                     <div className="text-center">
                         {product?.description}
-                        <p className="text-blue-600 cursor-pointer mt-2 pt-4" onClick={() => { profileOpen() }}>{t("とじる ...")}</p>
+                        <p className="text-blue-600 cursor-pointer mt-2 pt-4" onClick={() => { profileClose() }}>{t("とじる ...")}</p>
                     </div>
 
                 </div>
