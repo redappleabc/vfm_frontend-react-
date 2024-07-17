@@ -74,7 +74,7 @@ const BackUploader = ({ img }) => {
                 />
 
                 <img
-                    className={`h-[300px] w-auto object-cover transition-opacity duration-500 ${hovered ? 'opacity-50' : 'opacity-100'}`}
+                    className={`h-[300px] w-[100vw] object-cover transition-opacity duration-500 ${hovered ? 'opacity-50' : 'opacity-100'}`}
                     src={img}
                     alt="wait"
                 />
