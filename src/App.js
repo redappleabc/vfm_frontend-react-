@@ -58,14 +58,21 @@ const App = () => {
     };
 
     const loadCart = async () => {
-        const carts = await axios.get("/cart");
-        dispatch(setCartLength(carts?.data?.cart?.items?.length));
+        axios.get("/cart")
+            .then(response => {
+                dispatch(setCartLength(response?.data?.cart?.items?.length));
+            }).catch(error => {
+                if (error.response) {
+                    console.log(error.response)
+                }
+            })
     }
 
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (token) {
+
             loadCart();
             fetchUnreadMessages();
             const interval = setInterval(() => {
@@ -80,7 +87,11 @@ const App = () => {
             .then(response => {
                 dispatch(setUnreadMessages(response?.data?.unreadMessages));
             })
-            .catch(error => console.log(error?.response?.data?.message));
+            .catch(error => {
+                if (error.response) {
+                    console.log(error.response)
+                }
+            })
     };
 
     useEffect(() => {

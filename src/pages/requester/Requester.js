@@ -92,13 +92,13 @@ const Requester = () => {
                                 </div>
                                 {
                                     requirement?.user?.id !== user?.user?.id &&
-                                    <button onClick={handleRequired} className="px-20 bg-badge text-white w-full py-3 rounded-md mt-5 hover:opacity-40 duration-500">{t("Apply for request")}</button>
+                                    <Button loading={loading} onClick={handleRequired} className="px-20 bg-badge text-white w-full py-3 rounded-md mt-5 hover:opacity-40 duration-500">{t("Apply for request")}</Button>
                                 }
                             </div>
                         </div>
                     </div>
                     {chatOption && (
-                        <ChatBox recipient_id={1} />
+                        <ChatBox recipient_id={contractId} />
                     )}
                 </section >
             </div >
