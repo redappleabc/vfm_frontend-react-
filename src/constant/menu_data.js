@@ -15,7 +15,7 @@ export const ADMIN_MENU_DATA = {
             pathname: 'admin/designer',
         },
         {
-            title: 'リクエスター管理',
+            title: 'クライアント管理',
             pathname: 'admin/requester',
         },
         {
@@ -23,11 +23,11 @@ export const ADMIN_MENU_DATA = {
             pathname: 'admin/matching-status',
         },
         {
-            title: '銀行情報管理ページ',
+            title: '銀行情報管理',
             pathname: 'admin/bank-info'
         },
         {
-            title: '支払い管理ページ',
+            title: '支払管理',
             pathname: 'admin/payment'
         }
     ],

@@ -36,7 +36,7 @@ function AdminSearch() {
 
     return (
         <>
-            {/* <Header page={"adminscreen"} pagetitle={"管理画面 リクエスター管理 ホーム画面"} /> */}
+            {/* <Header page={"adminscreen"} pagetitle={"管理画面 クライアント管理 ホーム画面"} /> */}
             <section id="main-section">
                 <Button onClick={fetchDesign} className="my-2" icon={<LuRefreshCw />} loading={loading}>リフレッシュ</Button>
                 <ClientTable tableData={filteredClients} refresh={fetchDesign} />

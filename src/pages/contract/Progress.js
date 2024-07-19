@@ -225,9 +225,9 @@ function Progress() {
                                 <hr />
                                 <div className="grid grid-cols-5 p-5">
                                     <p className="col-span-1">ハッシュタグ</p>
-                                    <div className="col-span-4">
+                                    {/* <div className="col-span-4">
                                         <TagGroup tags={["＃KAWAII", "#ANIME", "＃DRESS", "＃JAPAN"]} />
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </div>
@@ -306,7 +306,7 @@ function Progress() {
                                     icon={<RiFolderReceivedLine />}
                                     size="large"
                                     className="bg-blue-500 px-12 text-white ">
-                                    {t("Delivery receipt")}
+                                    配達を受け取る
                                 </Button>
                                 <Button
                                     disabled={contract?.status !== 4}

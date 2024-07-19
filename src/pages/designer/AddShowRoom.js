@@ -378,8 +378,7 @@ const AddShowRoom = () => {
                                                 <span>HASHTAGS</span>
                                             </div>
                                             <div className='col-span-4'>
-                                                <TagGroup tags={['＃2024-SS', 'First', 'Collection', '#DRESS', '#JAPA']} />
-                                                <hr />
+                                            <Tag closable bordered={false} color="blue">{hashtags}</Tag>                                                <hr />
                                             </div>
                                         </div>
                                         <div className='grid grid-cols-6 mb-5'>

@@ -41,7 +41,7 @@ export default AdminNav;
 // const AdminNav = ({ active, handleNavigation, isActive }) => (
 //     <div className={!isActive ? 'admin_nav' : 'admin_nav_1'}>
 //         <h1 onClick={() => handleNavigation(0)} className={active === '0' ? 'header-active-admin font-bold' : 'font-bold'}>クリエイター管理</h1>
-//         <h1 onClick={() => handleNavigation(1)} className={active === '1' ? 'header-active-admin font-bold' : 'font-bold'}>リクエスター管理</h1>
+//         <h1 onClick={() => handleNavigation(1)} className={active === '1' ? 'header-active-admin font-bold' : 'font-bold'}>クライアント管理</h1>
 //         <h1 onClick={() => handleNavigation(2)} className={active === '2' ? 'header-active-admin font-bold' : 'font-bold'}>マッチング状況管理</h1>
 //     </div>
 // );

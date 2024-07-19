@@ -87,20 +87,6 @@ const DesignerDashboard = () => {
         handleOpen1();
     };
 
-    // const fetchInitialValues = async () => {
-    //     try {
-    //         const id = await axios.get("/id");
-    //         setId(id?.data?.id);
-    //         const response = await axios.get('/bank-info'); // Replace with your API endpoint
-    //         const { bank_info } = response.data;
-    //         setInitialValues(bank_info); // Set initial values from API response
-    //         form.setFieldsValue(bank_info); // Set form fields with initial values
-    //     } catch (error) {
-    //         message.error('Failed to fetch initial values');
-    //     }
-    // };
-
-
     const [loading, setLoading] = useState(false);
 
     const onFinish = async (values) => {
@@ -382,7 +368,16 @@ const DesignerDashboard = () => {
                                             name="financial_institution"
                                             rules={[{ required: true, message: '金融機関を入力してください！' }]}>
                                             <div className="grid md:grid-cols-12 grid-row">
-                                                <p className="md:col-span-3 col-span-12 text-left mt-2">金融機関・支店</p>
+                                                <p className="md:col-span-3 col-span-12 text-left mt-2">金融機関名</p>
+                                                <div></div>
+                                                <Input plachoder="銀行（ゆうちょ以外）・信用金庫など" className="col-span-8 text-left p-2" />
+                                            </div>
+                                        </Form.Item>
+                                        <Form.Item
+                                            name="head_office"
+                                            rules={[{ required: true, message: '本店・支店名を入力してください！' }]}>
+                                            <div className="grid md:grid-cols-12 grid-row">
+                                                <p className="md:col-span-3 col-span-12 text-left mt-2">本店・支店名</p>
                                                 <div></div>
                                                 <Input plachoder="銀行（ゆうちょ以外）・信用金庫など" className="col-span-8 text-left p-2" />
                                             </div>

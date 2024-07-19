@@ -138,7 +138,7 @@ const Cart = () => {
                                                 <dd className="text-base font-medium text-gray-900">${totalPrice}</dd>
                                             </dl>
                                             <dl className="flex items-center justify-between gap-4">
-                                                <dt className="text-base font-normal text-gray-500">Savings</dt>
+                                                <dt className="text-base font-normal text-gray-500">貯蓄</dt>
                                                 <dd className="text-base font-medium text-green-600">-$299.00</dd>
                                             </dl>
                                             <dl className="flex items-center justify-between gap-4">

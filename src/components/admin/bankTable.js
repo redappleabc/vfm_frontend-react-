@@ -46,6 +46,7 @@ const BankTable = ({ tableData, refresh }) => {
             newItem.avatar = item?.user?.avatar;
             newItem.account_type = item?.account_type;
             newItem.financial_institution = item?.financial_institution;
+            newItem.head_office = item?.head_office;
             newItem.created_at = item?.created_at?.slice(0, 10);
             newItem.account_holder_name = item?.account_holder_name;
             newItem.bank_type = item?.bank_type;
@@ -110,9 +111,14 @@ const BankTable = ({ tableData, refresh }) => {
             key: 'bank_type',
         },
         {
-            title: '金融機関・支店',
+            title: '金融機関',
             dataIndex: 'financial_institution',
             key: 'financial_institution',
+        },
+        {
+            title: '本店・支店',
+            dataIndex: 'head_office',
+            key: 'head_office',
         },
         {
             title: '口座種別',
@@ -186,9 +192,15 @@ const BankTable = ({ tableData, refresh }) => {
                             </Radio.Group>
                         </Form.Item>
                         <Form.Item
-                            label="金融機関・支店"
+                            label="金融機関名"
                             name="financial_institution"
-                            rules={[{ required: true, message: '金融機関を入力してください！' }]}>
+                            rules={[{ required: true, message: '金融機関名を入力してください！' }]}>
+                            <Input plachoder="銀行（ゆうちょ以外）・信用金庫など" className="col-span-8 text-left p-2" />
+                        </Form.Item>
+                        <Form.Item
+                            label="本店・支店名"
+                            name="head_office"
+                            rules={[{ required: true, message: '本店・支店名を入力してください！' }]}>
                             <Input plachoder="銀行（ゆうちょ以外）・信用金庫など" className="col-span-8 text-left p-2" />
                         </Form.Item>
                         <Form.Item

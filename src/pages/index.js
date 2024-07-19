@@ -71,7 +71,7 @@ function Landing() {
             },
           }}
         >
-          {newProducts?.map(item => < SwiperSlide > <img src={item?.image} alt="Sample Image" className="w-full" /></SwiperSlide>)
+          {newProducts?.map(item => < SwiperSlide > <img src={item?.image} alt="Sample Image" className="w-full h-[250px]" /></SwiperSlide>)
 
           }
         </Swiper>
