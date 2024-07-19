@@ -140,14 +140,14 @@ const Product = () => {
                                 <img className="main-img-caro" src={product?.image} alt="wait" />
                                 <div className={favour ? "bg-red-500 favicon-product text-white" : "favicon-product"} onClick={handleFavourite}><FavoriteBorderIcon /></div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <img className="main-img-caro" src={product?.image} alt="wait" />
                                 <div className={favour ? "bg-red-500 favicon-product text-white" : "favicon-product"} onClick={handleFavourite}><FavoriteBorderIcon /></div>
                             </div>
                             <div>
                                 <img className="main-img-caro" src={product?.image} alt="wait" />
                                 <div className={favour ? "bg-red-500 favicon-product text-white" : "favicon-product"} onClick={handleFavourite}><FavoriteBorderIcon /></div>
-                            </div>
+                            </div> */}
                         </Carousel>
                     </div>
                     <div className="md:w-1/2 w-full">
@@ -192,7 +192,7 @@ const Product = () => {
                                         disabled={!isRequired}
                                         onClick={() => navigate('/progress')}
                                     >
-                                        <span className="text-lg">{t("アーティストを指名して依頼をする")}</span>
+                                        <span className="text-lg">{t("クリエイターを指名して依頼をする")}</span>
                                     </Button>
                                 </>
                             }
@@ -217,7 +217,6 @@ const Product = () => {
                         </div>
                     </div>
                 }
-                navigate('/progress/' + contractId)
                 {
                     isRequired &&
                     <>

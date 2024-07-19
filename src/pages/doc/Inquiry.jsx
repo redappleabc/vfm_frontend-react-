@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
     Button,
@@ -43,8 +44,8 @@ function Inquiry() {
                                 <Form.Item label="お名前" name="Input" rules={[{ required: true, message: 'お名前' }]}>
                                     <Input className="p-2 sm:ml-16 sm:w-96" />
                                 </Form.Item>
-                                <Form.Item label="メールアドレス" name="email" rules={[{ required: true, message: 'メールアドレス' }]}>
-                                    <Input className="p-2 sm:ml-3 sm:w-96" />
+                                <Form.Item label="メール" name="email" rules={[{ required: true, message: 'メールアドレスを入力してください。' }]}>
+                                    <Input className="p-2 sm:ml-16 sm:w-96" />
                                 </Form.Item>
                                 <Form.Item
                                     label="お問い合わせ内容"

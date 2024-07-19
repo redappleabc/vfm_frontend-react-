@@ -3,7 +3,7 @@
  * @created 03/08/2024
  * @lastModified 04/11/2024
  * @description Types list in Config Store
- * @copyright SoTru
+ * @copyright VFM
  */
 
 /**

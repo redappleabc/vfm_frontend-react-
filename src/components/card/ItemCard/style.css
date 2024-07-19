@@ -44,10 +44,10 @@ h1 {
     justify-content: space-between;
 }
 
-.item-details > .min-details > h1 > span {
+.item-details > .min-details > h2 > span {
     color: #7B7B7B;
     display: block;
-    font-size: .9rem;
+    /* font-size: .9rem; */
     font-weight: 400;
 }
 

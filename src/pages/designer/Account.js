@@ -78,7 +78,7 @@ function Desigenerprofile() {
                     className="flex gap-4 md:top-[-50px] relative text-white px-3 py-1 rounded-lg text-center bg-blue-700 border-none justify-center ml-56 hover:opacity-50 duration-500 shadow-md shadow-gray-500"
                     onClick={() => { openPopUp("プロフィールの登録が完了しました") }}
                 >
-                    CLIENAT
+                    CLIENT
                 </button>
             </section>
             <section className="request-cards">

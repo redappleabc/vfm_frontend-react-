@@ -53,7 +53,7 @@ const AddShowRoom = () => {
 
         <div className="py-24 xl:px-20 md:px-10 px-5">
             <section id="product-title">
-                <p className="flex gap-1 text-sm mb-3">CLIENAT
+                <p className="flex gap-1 text-sm mb-3">CLIENT
                     <img className="w-5" src={expand} alt="expand" />
                 </p>
                 <div className="bg-blue-600 text-white px-5 py-1 font-medium rounded-md text-sm">
@@ -64,7 +64,7 @@ const AddShowRoom = () => {
                 <div className="grid flex-row md:grid-cols-12 gap-5  mb-10">
                     <div className="gird md:col-span-6 flex-row">
                         <Carousel className="carousel-product mt-24">
-                            {[imageProduct, imageProduct, imageProduct].map((image, index) => (
+                            {[imageProduct].map((image, index) => (
                                 <div key={index}>
                                     <img className="main-img-carousel" src={image} alt="product" />
                                 </div>
@@ -134,7 +134,7 @@ const AddShowRoom = () => {
                 </div>
             </div>
         </Modal >
-        <SuccessModal open={isopen} onCancel={handleCancel} title={"成果的に登録されました。"}></SuccessModal>
+        <SuccessModal open={isopen} onCancel={handleCancel} title={"正常に登録作業が完了いたしました。"}></SuccessModal>
     </>);
 }
 

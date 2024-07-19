@@ -99,14 +99,14 @@ const ItemDetailPage = () => {
                                 <img className="main-img-caro" src={imageProduct} alt="wait" />
                                 <div className="favicon-product"><FavoriteBorderIcon /></div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <img className="main-img-caro" src={imageProduct} alt="wait" />
                                 <div className="favicon-product"><FavoriteBorderIcon /></div>
                             </div>
                             <div>
                                 <img className="main-img-caro" src={imageProduct} alt="wait" />
                                 <div className="favicon-product"><FavoriteBorderIcon /></div>
-                            </div>
+                            </div> */}
                         </Carousel>
                     </div>
                     <div className="md:w-1/2 w-full">
@@ -139,7 +139,7 @@ const ItemDetailPage = () => {
                             </button>
                             <button onClick={() => navigate('/progress')} className="bg-black text-white font-bold border-none py-2 w-full block text-md round-md mb-3 rounded-md hover:opacity-80 transition duration-500 shadow-md shadow-gray-500 hover:shadow-none"
                             >
-                                {t("アーティストを指名して依頼をする")}
+                                {t("クリエイターを指名して依頼をする")}
                             </button>
                         </div>
                     </div>

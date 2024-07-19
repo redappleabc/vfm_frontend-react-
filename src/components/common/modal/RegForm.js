@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 const RegFormModal = ({ open, onCancel, onConfirm }) => {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState('');
+    const [number, setNumber] = useState(100);
     const [bio, setBio] = useState('');
     const [username, setUsername] = useState('');
 
@@ -39,7 +40,7 @@ const RegFormModal = ({ open, onCancel, onConfirm }) => {
         }
         if (bio?.length === 0) {
             newErrors.bio = '自己紹介が入力されていません。入力してください。!';
-        } else if (bio?.length > 98) {
+        } else if (bio?.length > 99) {
             newErrors.bio = '全角100文字以内';
         } else {
             newErrors.bio = "";
@@ -78,14 +79,14 @@ const RegFormModal = ({ open, onCancel, onConfirm }) => {
                             rows={4}
                             value={bio}
                             maxLength={100}
-                            onChange={(e) => setBio(e.target.value)}
+                            onChange={(e) => {setBio(e.target.value); setNumber(100-e.target.value?.length)}}
                         />
                         {errors.bio && <p className="text-red-500 text-xs">{errors.bio}</p>}
                     </div>
 
                 </div>
 
-                <p>あと100文字（全角）</p>
+                <p>あと{number}文字（全角）</p>
                 <div className="flex flex-col justify-center items-center gap-5">
                     <Button
                         type="primary"

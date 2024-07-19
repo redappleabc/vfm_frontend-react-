@@ -24,13 +24,15 @@ const Requester = () => {
     const [open, setOpen] = useState(false);
     const [isRequired, setIsRequired] = useState(false);
     const [chatOption, setChatOption] = useState(false);
-    const [requirement, setRequirement] = useState()
+    const [requirement, setRequirement] = useState();
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const handleRequired = async () => {
+        setLoading(true);
         const res = await axios.post('/contracts', {
             client_id: requirement?.user?.id,
             requirement_id: id,
@@ -38,6 +40,8 @@ const Requester = () => {
         });
         setContractId(res?.data?.data?.id);
         setIsRequired(true);
+        setLoading(false);
+
     }
 
     useEffect(() => {
@@ -49,7 +53,7 @@ const Requester = () => {
             {/* <Header page="webscreens" pagetitle="REQUESTER" /> */}
             <div className="py-24 xl:px-20 md:px-10 px-5">
                 <section id="product-title">
-                    <p className="flex gap-1 text-sm mb-3">CLIENAT
+                    <p className="flex gap-1 text-sm mb-3">CLIENT
                         <img className="w-5" src={expand} alt="expand" />
                     </p>
                     <div className="bg-blue-600 text-white px-5 py-1 font-medium rounded-md text-sm">
@@ -60,7 +64,7 @@ const Requester = () => {
                     <div className="flex flex-col xl:flex-row  mb-10">
                         <div className="xl:w-1/2">
                             <Carousel className="carousel-product mt-24">
-                                {[imageProduct, imageProduct, imageProduct].map((image, index) => (
+                                {[imageProduct].map((image, index) => (
                                     <div key={index}>
                                         <img className="main-img-carousel" src={requirement?.image} alt="product" />
                                     </div>
@@ -71,7 +75,7 @@ const Requester = () => {
                             <div className=" rounded-lg border-gray-500 shadow-lg xl:mx-10 md:mx-5 mx-0 p-7 shadow-gray-500 border-none">
                                 <div className="flex flex-col items-center justify-start">
                                     <VFM_Avatar size={32} img={requirement?.user?.avatar} path={"/requester/profile/" + requirement?.client_id} />
-                                    <h1 className="text-badge my-2">CLIENAT</h1>
+                                    <h1 className="text-badge my-2">CLIENT</h1>
                                     <h1 >{requirement?.user?.username}</h1>
                                 </div>
                                 <div className="mt-5 flex flex-col gap-5">

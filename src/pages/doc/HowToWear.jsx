@@ -30,9 +30,9 @@ function Howtowear() {
             <div className="main-box-howtowear leading-loose">
               <h4 className="font-bold text-[18px] md:text-[20px] mb-3">
                 クライアント（投資家）はVIRTUAL
-                FASHIONを着用したい画像や動画データをチャットからアーティストへ送付
+                FASHIONを着用したい画像や動画データをチャットからクリエイターへ送付
                 <br />
-                アーティストはVIRTUAL
+                クリエイターはVIRTUAL
                 FASHIONを着用させた状態の画像や動画データを納品
               </h4>
               <div className="border-b border-gray-500 py-5">
@@ -40,7 +40,7 @@ function Howtowear() {
                   クライアント（投資家）側
                 </h5>
                 <h6 className="font-semibold text-[16px]">
-                  ■アーティスト側が登録している商品を購入する場合
+                  ■クリエイター側が登録している商品を購入する場合
                 </h6>
                 <p className="font-normal text-[16px]">
                   ・商品詳細ページから、気に入ったVIRTUAL
@@ -48,9 +48,9 @@ function Howtowear() {
                   <br />
                   ・オプション購入タブから、VIRTUAL
                   FASHIONを着用したい画像や動画の数量を指定してください <br />
-                  ・購入完了後のチャットルームから、オプションで購入した分画像や動画をアーティストへ送信してください
+                  ・購入完了後のチャットルームから、オプションで購入した分画像や動画をクリエイターへ送信してください
                   <br />
-                  ・アーティストから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください
+                  ・クリエイターから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください
                 </p>
                 <h6 className="font-semibold text-[16px] mt-2">
                   ■リクエスト登録をして商品を購入する場合
@@ -58,17 +58,17 @@ function Howtowear() {
                 <p className="font-normal text-[16px]">
                   ・マイページから、ほしいVIRTUAL
                   FASHIONの詳細を登録してください <br />
-                  ・リクエストに応募があったアーティストから、依頼するアーティストを決めてチャットの「リクエストを依頼する」ボタンを押してください{" "}
+                  ・リクエストに応募があったクリエイターから、依頼するクリエイターを決めてチャットの「リクエストを依頼する」ボタンを押してください{" "}
                   <br />
-                  ・購入完了後のチャットルームから、リクエスト登録に記載のあった分の画像や動画をアーティストへ送信してください
+                  ・購入完了後のチャットルームから、リクエスト登録に記載のあった分の画像や動画をクリエイターへ送信してください
                   <br />
-                  ・アーティストから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください
+                  ・クリエイターから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください
                 </p>
               </div>
               <div className="border-b border-gray-500 py-5">
-                <h5 className="font-semibold text-[18px]">アーティスト側</h5>
+                <h5 className="font-semibold text-[18px]">クリエイター側</h5>
                 <h6 className="font-semibold text-[16px]">
-                  ■アーティスト側が登録している商品が購入された場合
+                  ■クリエイター側が登録している商品が購入された場合
                 </h6>
                 <p className="font-normal text-[16px]">
                   ・マイページの商品登録から、自身の作成したVIRTUAL

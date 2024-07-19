@@ -145,13 +145,16 @@ const AddShowRoom = () => {
                 <div className="grid md:grid-cols-12">
                     <p className="col-span-3">タグ</p>
                     <div className="col-span-9">
-                        <Select className="w-full" value={hashtags} onChange={setHashtags} options={tags} mode="multiple" />
+                        {/* <Select className="w-full" value={hashtags} onChange={setHashtags} options={tags} mode="multiple" /> */}
+                        <Input className="w-full" value={hashtags} onChange={(e) => setHashtags(e.target.value)} />
+
                     </div>
                 </div>
                 <div className="md:grid-cols-12 grid flex-row">
                     <p className="col-span-3">基本料金</p>
                     <div className="col-span-9">
-                        <Select
+                       <Input className='w-full' type='number' min={10} onChange={(e) => {setBasePrice(e.target.value)}} value={basePrice}/>
+                        {/* <Select
                             className='w-full'
                             defaultValue="lucy"
                             value={basePrice}
@@ -164,7 +167,7 @@ const AddShowRoom = () => {
                                 { value: 500, label: '500$' },
                                 { value: 600, label: '600$' },
                             ]}
-                        />
+                        /> */}
                         {/* <p className="text-red-500 text-xs">クライアントから送られてきた上半身の画像に</p>
                         <p className="text-red-500 my-1 text-xs">デジタルファッションを合成して納品する1枚当たりの価格</p> */}
                         <p className="text-xs">＄10.USD～登録可能</p>
@@ -191,7 +194,7 @@ const AddShowRoom = () => {
         <Modal open={openPreview} onCancel={handleClosePreview} footer={<></>} width={1200}>
             <div className="py-24 xl:px-20 md:px-10 px-5">
                 <section id="product-title">
-                    <p className="flex gap-1 text-sm mb-3">CLIENAT
+                    <p className="flex gap-1 text-sm mb-3">CLIENT
                         <img className="w-5" src={expand} alt="expand" />
                     </p>
                     <div className="bg-blue-600 text-white px-5 py-1 font-medium rounded-md text-sm">
@@ -202,7 +205,7 @@ const AddShowRoom = () => {
                     <div className="grid flex-row md:grid-cols-12 gap-5  mb-10">
                         <div className="gird md:col-span-6 flex-row">
                             <Carousel className="carousel-product mt-24">
-                                {[imageProduct, imageProduct, imageProduct].map((item, index) => (
+                                {[imageProduct].map((item, index) => (
                                     <div key={index}>
                                         {preview && <img className="main-img-carousel" src={preview} alt="product" />}
                                     </div>
@@ -227,7 +230,8 @@ const AddShowRoom = () => {
                                         </div>
                                         <div className='col-span-4'>
                                             <div className="flex items-center justify-start gap-2 w-full flex-wrap m-0 relative left-0 right-0 ml-auto mr-auto my-5">
-                                                {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)}
+                                                <Tag closable bordered={false} color="blue">{hashtags}</Tag>
+                                                {/* {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)} */}
                                             </div >
                                         </div>
                                     </div>
@@ -249,7 +253,7 @@ const AddShowRoom = () => {
                     <ChatBox recipient_id={1} />}
             </div >
         </Modal>
-        <SuccessModal open={isopen} onCancel={handleCancel} title={"成果的に登録されました。"}></SuccessModal>
+        <SuccessModal open={isopen} onCancel={handleCancel} title={"正常に登録作業が完了いたしました。"}></SuccessModal>
     </>);
 }
 

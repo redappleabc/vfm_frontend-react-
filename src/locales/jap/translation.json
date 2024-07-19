@@ -1,7 +1,7 @@
 {
   "ALL ITEM": "全アイテム",
   "HASHTAGS SEARCH": "ハッシュタグ検索",
-  "CREATER": "アーティスト",
+  "CREATER": "クリエイター",
   "CLIENT": "クライアント",
   "NEW": "NEW",
   "HOW TO WEAR": "着こなし",
@@ -35,19 +35,19 @@
   "REQUEST_SERCH":"検索のリクエスト",
   "CREATER_SERCH":"クリエイター検索",
   "HOW TO WEAR VIRTUAL FASHION":"バーチャルファッションの着こなし方",
-  "how_to_wear_1":"クライアント（投資家）はVIRTUAL FASHIONを着用したい画像や動画データをチャットからアーティストへ送付 アーティストはVIRTUAL FASHIONを着用させた状態の画像や動画データを納品",
+  "how_to_wear_1":"クライアント（投資家）はVIRTUAL FASHIONを着用したい画像や動画データをチャットからクリエイターへ送付 クリエイターはVIRTUAL FASHIONを着用させた状態の画像や動画データを納品",
   "client": {
     "purchase_registered_product": {
       "step1": "商品詳細ページから、気に入ったVIRTUAL FASHIONを購入してください",
       "step2": "オプション購入タブから、VIRTUAL FASHIONを着用したい画像や動画の数量を指定してください",
-      "step3": "購入完了後のチャットルームから、オプションで購入した分画像や動画をアーティストへ送信してください",
-      "step4": "アーティストから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください"
+      "step3": "購入完了後のチャットルームから、オプションで購入した分画像や動画をクリエイターへ送信してください",
+      "step4": "クリエイターから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください"
     },
     "purchase_by_request": {
       "step1": "マイページから、ほしいVIRTUAL FASHIONの詳細を登録してください",
-      "step2": "リクエストに応募があったアーティストから、依頼するアーティストを決めてチャットの「リクエストを依頼する」ボタンを押してください",
-      "step3": "購入完了後のチャットルームから、リクエスト登録に記載のあった分の画像や動画をアーティストへ送信してください",
-      "step4": "アーティストから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください"
+      "step2": "リクエストに応募があったクリエイターから、依頼するクリエイターを決めてチャットの「リクエストを依頼する」ボタンを押してください",
+      "step3": "購入完了後のチャットルームから、リクエスト登録に記載のあった分の画像や動画をクリエイターへ送信してください",
+      "step4": "クリエイターから着用後のデータが送付されてきたら、「検収を完了する」ボタンを押し取引を終了してください"
     }
   },
   "artist": {
@@ -152,9 +152,9 @@
   "Help and FAQ":"ヘルプとよくある質問",
   "We have compiled help and frequently asked questions":"ヘルプとよくある質問をまとめました",
   "■How to register for VIRTUAL FASHION MALL":"■VIRTUAL FASHION MALLの登録方法",
-  "・If you would like to register as an artist (person who creates VIRTUAL FASHION), click here":"・アーティスト（VIRTUAL FASHIONを作成する人）として登録したい方はこちらから",
+  "・If you would like to register as an artist (person who creates VIRTUAL FASHION), click here":"・クリエイター（VIRTUAL FASHIONを作成する人）として登録したい方はこちらから",
   "・If you would like to register as a client (person who purchases VIRTUAL FASHION), please click here.":"・クライアント VIRTUAL FASHIONを購入する人）として登録したい方はこちらから",
-  "・Both artists/clients please check here.":"・アーティスト/クライアントともにこちらをご確認ください ",
+  "・Both artists/clients please check here.":"・クリエイター/クライアントともにこちらをご確認ください ",
   "■Inquiries to VIRTUAL FASHION MALL":"■VIRTUAL FASHION MALLへのお問い合わせ",
   "·Please check here":"・こちらをご確認ください "
 }

@@ -9,7 +9,7 @@ const DigitalFashion = () => {
     return (<div className="grid md:grid-cols-12 grid-row gap-5 mb-10 mt-10">
         <div className="col-span-6 ">
             <Carousel>
-                {[imageProduct, imageProduct, imageProduct].map((image, index) => (
+                {[imageProduct].map((image, index) => (
                     <div key={index}>
                         <img className="" src={image} alt="product" />
                     </div>

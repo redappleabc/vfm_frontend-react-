@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import {message} from 'antd';
 import './auth.css';
 import axios from 'axios';
 function TabPanel(props) {
@@ -90,7 +91,11 @@ const Auth = () => {
     // Login Form Submission Handler
     const handleLogin = async () => {
         try {
-            if (validateEmail(loginEmail) && loginPassword.length) {
+            if(!validateEmail(loginEmail)){
+                message.warn('メールアドレスが正しくありません。');
+            } else if(loginPassword.length === 0){
+                message.warn('パスワードを入力してください!');
+            } else {
                 const data = { email: loginEmail, password: loginPassword };
                 setLoginLoading(true);
                 const res = await dispatch(doLogin(data));
@@ -105,7 +110,13 @@ const Auth = () => {
 
     const handleRegister = async () => {
         try {
-            if (validateEmail(email) && username.length && password.length) {
+            if(!validateEmail(email)){
+                message.warn('メールアドレスが正しくありません。');
+            } else if(username.length === 0){
+                message.warn('ユーザー名を入力してください!');
+            } else if(password.length === 0){
+                message.warn('パスワードを入力してください!');
+            } else {
                 const data = { username, email, password };
                 setLoadingRegister(true)
                 if (userType === 'Client') {
@@ -178,7 +189,6 @@ const Auth = () => {
                                 </span>
                             </div>
                         </div>
-
                         <div className="input-group mb-4 mr-sm-2 block sm:flex items-center">
                             <label className="w-full sm:w-[160px] mb-3">メールアドレス</label>
                             <div className="w-full">
@@ -190,12 +200,8 @@ const Auth = () => {
                                     onChange={(e) => setLoginEmail(e.target.value)}
                                     placeholder="メールアドレス"
                                 />
-                                {!loginEmail ? (
-                                    <span className="text-xs text-red-600">メールアドレスを入力してください</span>
-                                ) : !validateEmail(loginEmail) ? <span className="text-xs text-red-600">メールアドレスが正しくありません。</span> : ""}
                             </div>
                         </div>
-
                         <div className="input-group mb-2 mr-sm-2 block sm:flex items-center">
                             <label className="w-full sm:w-[160px]">パスワード</label>
                             <div className="w-full">
@@ -207,13 +213,8 @@ const Auth = () => {
                                     onChange={(e) => { setLoginPassword(e.target.value) }}
                                     placeholder="パスワード"
                                 />
-                                {!loginPassword && (
-                                    <span className="text-xs text-red-600">パスワードを入力してください</span>
-                                )}
                             </div>
                         </div>
-                        {/* {authState?.isError && <p>Error: {authState?.message}</p>}
-                        {authState?.isSuccess && <p>Success!</p>} */}
                         <div className="flex items-center mb-4 mt-8">
                             <input
                                 id="remeberMe"
@@ -296,9 +297,6 @@ const Auth = () => {
                                     onChange={(e) => { setUsername(e.target.value) }}
                                     placeholder="ユーザー名"
                                 />
-                                {!username && (
-                                    <span className="text-xs text-red-600">ユーザー名を入力してください</span>
-                                )}
                             </div>
                         </div>
 
@@ -313,9 +311,6 @@ const Auth = () => {
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="メールアドレス"
                                 />
-                                {!email ? (
-                                    <span className="text-xs text-red-600">メールアドレスを入力してください</span>
-                                ) : !validateEmail(email) ? <span className="text-xs text-red-600">メールアドレスが正しくありません。</span> : ""}
                             </div>
                         </div>
                         <div className="input-group mb-2 mr-sm-2 block sm:flex items-center">
@@ -329,9 +324,6 @@ const Auth = () => {
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="パスワード"
                                 />
-                                {!password && (
-                                    <span className="text-xs text-red-600">パスワードを入力してください</span>
-                                )}
                             </div>
                         </div>
                         <div className="flex items-center mb-4 mt-8">

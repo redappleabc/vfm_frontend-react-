@@ -129,29 +129,16 @@ const AddShowRoom = () => {
                     <p className="col-span-2">ハッシュタグ</p>
                     <div className="col-span-1"></div>
                     <div className="col-span-9">
-                        <Select className="w-full" value={hashtags} onChange={setHashtags} options={tags} mode="multiple" />
+                        {/* <Input className="w-full" value={hashtags} onChange={setHashtags} options={tags} mode="multiple" /> */}
+                        <Input className="w-full" value={hashtags} onChange={(e) => setHashtags(e.target.value)} />
+
                     </div>
                 </div>
 
                 <div className="md:grid-cols-12 grid flex-row">
                     <p className="col-span-3">基本料金</p>
                     <div className="col-span-9">
-                        <Select
-                            className='w-full'
-                            defaultValue="lucy"
-                            value={basePrice}
-                            onChange={setBasePrice}
-                            options={[
-                                { value: 100, label: '100$' },
-                                { value: 200, label: '200$' },
-                                { value: 300, label: '300$' },
-                                { value: 400, label: '400$' },
-                                { value: 500, label: '500$' },
-                                { value: 600, label: '600$' },
-                            ]}
-                        />
-                        {/* <p className="text-red-500 text-xs">クライアントから送られてきた上半身の画像に</p>
-                        <p className="text-red-500 my-1 text-xs">デジタルファッションを合成して納品する1枚当たりの価格</p> */}
+                        <Input className='w-full' type='number' min={10}  onChange={(e) => {setBasePrice(e.target.value)}} value={basePrice}/>
                         <p className="text-xs">＄10.USD～登録可能</p>
                     </div>
                 </div>
@@ -176,8 +163,6 @@ const AddShowRoom = () => {
                                 { value: 600, label: '600$' },
                             ]}
                         />
-                        {/* <p className="text-red-500 text-xs">クライアントから送られてきた上半身の画像に</p>
-                        <p className="text-red-500 my-1 text-xs">デジタルファッションを合成して納品する1枚当たりの価格</p> */}
                         <p className="text-xs">＄10.USD～登録可能</p>
                     </div>
                 </div>
@@ -201,8 +186,6 @@ const AddShowRoom = () => {
                                 { value: 600, label: '600$' },
                             ]}
                         />
-                        {/* <p className="text-red-500 text-xs">クライアントから送られてきた上半身の画像に</p>
-                        <p className="text-red-500 my-1 text-xs">デジタルファッションを合成して納品する1枚当たりの価格</p> */}
                         <p className="text-xs">＄10.USD～登録可能</p>
                     </div>
                 </div>
@@ -224,8 +207,6 @@ const AddShowRoom = () => {
                                 { value: 600, label: '600$' },
                             ]}
                         />
-                        {/* <p className="text-red-500 text-xs">クライアントから送られてきた上半身の画像に</p>
-                        <p className="text-red-500 my-1 text-xs">デジタルファッションを合成して納品する1枚当たりの価格</p> */}
                         <p className="text-xs">＄10.USD～登録可能</p>
                     </div>
                 </div>
@@ -248,8 +229,6 @@ const AddShowRoom = () => {
                                 { value: 600, label: '600$' },
                             ]}
                         />
-                        {/* <p className="text-red-500 text-xs">クライアントから送られてきた上半身の画像に</p>
-                        <p className="text-red-500 my-1 text-xs">デジタルファッションを合成して納品する1枚当たりの価格</p> */}
                         <p className="text-xs">＄10.USD～登録可能</p>
                     </div>
                 </div>
@@ -271,7 +250,7 @@ const AddShowRoom = () => {
                         <input type="file" onChange={handleImageChange} />
                         {!image && <p>選火されていません</p>}
                     </div>
-                    <p>ファイル形式Iよ）咋＜3・ゆ6、画像サイズは4X8まで</p>
+                    <p>ファイル形式：JPEG、PNG、画像サイズは最大4x8まで</p>
                 </div>
                 <div className="flex flex-row gap-5 justify-center">
                     <Button type="primary" loading={isLoading} onClick={handleClick} className="w-48 bg-blue-500" icon={<FaPenClip />} >{t('Register')}</Button>
@@ -293,7 +272,7 @@ const AddShowRoom = () => {
                     <div className="grid md:grid-cols-12 grid:row gap-5  mb-10">
                         <div className="gird col-span-6">
                             <Carousel className="carousel-product mt-24">
-                                {[imageProduct, imageProduct, imageProduct].map((image, index) => (
+                                {[imageProduct].map((image, index) => (
                                     <div key={index}>
                                         {preview && <img className="main-img-carousel" src={preview} alt="product" />}
                                     </div>
@@ -326,7 +305,8 @@ const AddShowRoom = () => {
                                         {/* <TagGroup tags={['＃2024-SS', 'First', 'Collection', '#DRESS', '#JAPA']} /> */}
                                         <div className='col-span-4'>
                                             <div className="flex items-center justify-start gap-2 w-full flex-wrap m-0 relative left-0 right-0 ml-auto mr-auto my-5">
-                                                {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)}
+                                            <Tag closable bordered={false} color="blue">{hashtags}</Tag>
+                                                {/* {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)} */}
                                             </div >
                                         </div>
                                     </div>
@@ -437,7 +417,7 @@ const AddShowRoom = () => {
                 </div>
             </div>
         </Modal >
-        <SuccessModal open={isopen} onCancel={handleCancel} title={"成果的に登録されました。"}></SuccessModal>
+        <SuccessModal open={isopen} onCancel={handleCancel} title={"正常に登録作業が完了いたしました。"}></SuccessModal>
     </>);
 }
 
