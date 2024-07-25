@@ -61,8 +61,8 @@ export const ProductCard = ({ products, isNew, isPopular }) => {
                             <img src={item.image} alt="wait" className="absolute scale-[1.03] w-[500px] " draggable={false} />
                             <section className="item-details" draggable={false}>
                                 <div className="min-details">
-                                    <h2 className="font-extrabold text-blue-500">{item.name}</h2>
-                                    <h2 className="price font-bold text-red-500">${item.price}</h2>
+                                    <h2 className="font-extrabold text-blue-500">{item?.name?.length > 11 ? item?.name?.slice(0,9)+'...' : item?.name}</h2>
+                                    <h2 className="font-bold text-red-500">${item.price}</h2>
                                 </div>
                                 <span className="my-2 text-lg font-semibold">{item?.creator?.username}</span>
                                 <Button type="primary" className="w-full my-7 py-5" onClick={() => { navigate('/product/' + item?.id) }} icon={<CiViewList className="w-6 h-6" />} >商品詳細画面へ</Button>
@@ -93,7 +93,7 @@ export const ProductCard = ({ products, isNew, isPopular }) => {
                         <img src={item.image} alt="wait" className="absolute  scale-[1.03] w-[500px]" draggable={false} />
                         <section className="item-details" draggable={false}>
                             <div className="min-details">
-                                <h2 className="font-extrabold text-blue-500">{item.name}</h2>
+                                <h2 className="font-extrabold text-blue-500">{item?.name?.length > 11 ? item?.name?.slice(0,9)+'...' : item?.name}</h2>
                                 <h2 className="price font-bold text-red-500">${item.price}</h2>
                             </div>
                             <span className="my-2 text-lg font-semibold">{item?.creator?.username}</span>

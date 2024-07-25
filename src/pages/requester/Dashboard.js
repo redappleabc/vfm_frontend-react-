@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Badge, Input, Space, Radio, Button } from 'antd';
+import { LiaUserEditSolid } from "react-icons/lia";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import Sidebar from "../../components/sidebar";
 import RegFormModal from "../../components/common/modal/RegForm";
@@ -98,20 +99,24 @@ const RequesterDashboard = () => {
                     <div className="md:relative md:top-[-100px] mt-[-20px] left-56">
                         <h1 className="m-0">{user?.user?.username}</h1>
                         <p className="m-0">{user?.user?.bio}</p>
+                        <div className="mt-4 w-32 h-8 rounded-full items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white justify-center flex shadow-md shadow-gray-300">
+                            <span className="text-lg font-bold">
+                                {t("CLIENT")}
+                            </span>
+                        </div>
                     </div>
                     <Button type="primary"
                         onClick={hadnleOpenForm}
+                        icon={<LiaUserEditSolid />}
                         className="flex md:top-[-70px] md:left-[50%] md:relative mt-3 text-white px-3 w-28 rounded-lg text-center border-none justify-center"
                     >
                         {t("To Edit")}
                     </Button>
-                    <Button type="primary" className="flex md:relative md:mt-0 mt-10 md:top-[-70px] top-[-30px] left-32 text-white p-2 px-10 rounded-lg text-center">{t("CLIENT")}</Button>
                 </div>
 
             </section>
 
-            <section className="bg-gray-100 md:p-16 pl-16 pr-2 gap-2 justify-center py-20 grid grid-cols-12">
-
+            <section className="bg-gray-100 md:p-16 pl-16 pr-2 gap-2 justify-center py-20 grid grid-cols-12 mt-2">
                 <div className="md:col-span-3 col-span-1">
                     <Sidebar setCurrent={handleActive} />
                 </div>
@@ -194,13 +199,13 @@ const RequesterDashboard = () => {
                                         onClick={() => { navigate('/progress/' + transaction?.id) }}
                                     >
                                         <div className="flex flex-row lg:mb-5 items-center">
-                                            <div className="flex lg:flex-row flex-col justify-between">
-                                                <div className="flex w-40">
+                                        <div className="flex lg:flex-row flex-col justify-between">
+                                                <div className="flex lg:w-56 w-full">
                                                     <Badge count={transaction?.messages?.length} color="blue" className="mr-2" />
-                                                    <p className="mx-2">{transaction?.product?.name}</p>
-                                                    <p className="mx-2">[{transaction?.client?.username}]</p>
+                                                    <p className="mx-2">{transaction?.product?.name?.length > 9 ? transaction?.product?.name?.slice(0,7)+'...' : transaction?.product?.name}</p>
+                                                    <p className="mx-2">{transaction?.client?.username?.length > 9 ? transaction?.client?.username?.slice(0,7)+'...' : transaction?.client?.username}</p>
                                                 </div>
-                                                <div className="flex justify-end w-40">
+                                                <div className="flex justify-end lg:w-24 w-full">
                                                     <p className="date-last-box-chat">{transaction?.created_at?.slice(0, 10)}</p>
                                                 </div>
                                             </div>
@@ -235,13 +240,13 @@ const RequesterDashboard = () => {
                                         onClick={() => { navigate('/progress/' + transaction?.id) }}
                                     >
                                         <div className="flex flex-row lg:mb-5 items-center">
-                                            <div className="flex lg:flex-row flex-col justify-between">
-                                                <div className="flex w-40">
+                                        <div className="flex lg:flex-row flex-col justify-between">
+                                                <div className="flex lg:w-56 w-full">
                                                     <Badge count={transaction?.messages?.length} color="blue" className="mr-2" />
-                                                    <p className="mx-2">{transaction?.product?.name}</p>
-                                                    <p className="mx-2">[{transaction?.client?.username}]</p>
+                                                    <p className="mx-2">{transaction?.product?.name?.length > 9 ? transaction?.product?.name?.slice(0,7)+'...' : transaction?.product?.name}</p>
+                                                    <p className="mx-2">{transaction?.client?.username?.length > 9 ? transaction?.client?.username?.slice(0,7)+'...' : transaction?.client?.username}</p>
                                                 </div>
-                                                <div className="flex justify-end w-40">
+                                                <div className="flex justify-end lg:w-24 w-full">
                                                     <p className="date-last-box-chat">{transaction?.created_at?.slice(0, 10)}</p>
                                                 </div>
                                             </div>
@@ -263,7 +268,7 @@ const RequesterDashboard = () => {
                                             </div>
                                             <div className="chat-jp-name-price">
                                                 <p className="chat-jp-name-price-1">ステータス</p>
-                                                <p className="chat-jp-name-price-2 text-blue-500">{transaction.status}</p>
+                                                <p className={`chat-jp-name-price-2 ${transaction.status === 6 ? "" : "text-blue-500"} `}>{transaction.status < 3 ? "販売済み" : transaction.status < 6 ? "進行中" : "納品完了"}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -276,13 +281,13 @@ const RequesterDashboard = () => {
                                         onClick={() => { navigate('/progress/' + transaction?.id) }}
                                     >
                                         <div className="flex flex-row lg:mb-5 items-center">
-                                            <div className="flex lg:flex-row flex-col justify-between">
-                                                <div className="flex w-40">
+                                        <div className="flex lg:flex-row flex-col justify-between">
+                                                <div className="flex lg:w-56 w-full">
                                                     <Badge count={transaction?.messages?.length} color="blue" className="mr-2" />
-                                                    <p className="mx-2">{transaction?.product?.name}</p>
-                                                    <p className="mx-2">[{transaction?.client?.username}]</p>
+                                                    <p className="mx-2">{transaction?.product?.name?.length > 9 ? transaction?.product?.name?.slice(0,7)+'...' : transaction?.product?.name}</p>
+                                                    <p className="mx-2">{transaction?.client?.username?.length > 9 ? transaction?.client?.username?.slice(0,7)+'...' : transaction?.client?.username}</p>
                                                 </div>
-                                                <div className="flex justify-end w-40">
+                                                <div className="flex justify-end lg:w-24 w-full">
                                                     <p className="date-last-box-chat">{transaction?.created_at?.slice(0, 10)}</p>
                                                 </div>
                                             </div>
@@ -304,7 +309,7 @@ const RequesterDashboard = () => {
                                             </div>
                                             <div className="chat-jp-name-price">
                                                 <p className="chat-jp-name-price-1">ステータス</p>
-                                                <p className="chat-jp-name-price-2 text-blue-500">{transaction.status}</p>
+                                                <p className={`chat-jp-name-price-2 ${transaction.status === 6 ? "" : "text-blue-500"} `}>{transaction.status < 3 ? "販売済み" : transaction.status < 6 ? "進行中" : "納品完了"}</p>
                                             </div>
                                         </div>
                                     </div>

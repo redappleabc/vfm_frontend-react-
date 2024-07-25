@@ -109,6 +109,7 @@ const Product = () => {
     }
 
     useEffect(() => {
+        console.log(product)
         setProduct(products.filter(item => item.id == id)[0]);
     })
     useEffect(() => {

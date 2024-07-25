@@ -46,16 +46,11 @@ function Progress() {
     const [contract, setContract] = useState()
     const [chatRegister, setChatRegister] = useState(false);
     const { t, i18n } = useTranslation();
-
     const [isLoadingComplete, setIsLoadingComplete] = useState(false);
     const [isLoadingRevert, setIsLoadingRevert] = useState(false);
     const [isLoadingContract, setIsLoadingContract] = useState(false);
     const [isLoadingReceived, setIsLoadingReceived] = useState(false);
-
-
-
     const [contractPrice, setContractPrice] = useState(0);
-
     const { user } = useSelector(state => state.user);
     const handleCloseContract = () => setOpenContract(false)
     const [form] = Form.useForm();
@@ -151,10 +146,6 @@ function Progress() {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const handleOpen1 = () => setOpen1(true);
-    const handleClose1 = () => setOpen1(false);
-
     const closefun = () => {
         handleClose();
     };
@@ -261,7 +252,6 @@ function Progress() {
                                         <p className="col-span-4">６点</p>
                                     </div>
                                 </div>
-
                             </div>
                             <div className="w-full">
                                 <VFMProgress values={contract?.status} />
@@ -286,7 +276,6 @@ function Progress() {
                             </Button>
                         </div> : <></> : user?.user?.id === contract?.client_id ?
                         <>
-
                             <div className="flex flex-wrap gap-5 justify-center mt-10 " >
                                 <Button
                                     disabled={contract?.status !== 5}

@@ -45,7 +45,7 @@ function Landing() {
     navigate('/auth')
   }
 
-  const titles = ["APPAREL", "ACCESSORY", "HAIRDO", "FOOD", "EFFECT", "INTERIOR DECORATION"];
+  const titles = ["APPAREL", "ACCESSORY", "HAIRDO", "AVATAR", "EFFECT", "INTERIOR DECORATION"];
   return (
     <>
       {/* <Header page={"webscreens"} pagetitle={"landing_screen"} /> */}

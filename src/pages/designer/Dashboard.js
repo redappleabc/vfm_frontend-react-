@@ -10,9 +10,8 @@ import BackUploader from "../../components/common/ImageUploader/back";
 import AvatarUploader from "../../components/common/ImageUploader/avatar";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import axios from "axios";
-
-import { transactionsData, purchasedCasesData, chatProgressData, requestData } from '../../constant/data'
 import { useSelector } from "react-redux";
+import { LiaUserEditSolid } from "react-icons/lia";
 
 const DesignerDashboard = () => {
     const [active, setActive] = useState('REQUEST')
@@ -26,6 +25,12 @@ const DesignerDashboard = () => {
     const [deliveried, setDeliveried] = useState([]);
     const [developing, setDeveloping] = useState([]);
     const [creators, setCreators] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [popupdata, setPopupdata] = useState("");
+    const [openConfirm, setOpenConfirm] = useState(false);
+    const [openForm, setOpenForm] = useState(false);
+    const [open1, setOpen1] = useState(false);
 
     useEffect(() => {
         fetchMessages();
@@ -44,6 +49,7 @@ const DesignerDashboard = () => {
     const handleActive = (current) => {
         setActive(current)
     }
+
     const fetchCreator = async () => {
         try {
             const id = await axios.get("/id");
@@ -59,35 +65,27 @@ const DesignerDashboard = () => {
             .then(response => setMessages(response.data.messages))
             .catch(error => console.log(error.response.data.message))
     };
-
-    const [open, setOpen] = useState(false);
-    const [popupdata, setPopupdata] = useState("");
+  
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const [openConfirm, setOpenConfirm] = useState(false);
     const handleConfirm = () => setOpenConfirm(true);
     const handleConfirmClose = () => setOpenConfirm(false);
+    const hadnleOpenForm = () => setOpenForm(true);
+    const hadnleCloseForm = () => setOpenForm(false);
+    const handleOpen1 = () => setOpen1(true);
+    const handleClose1 = () => setOpen1(false);
+    const status = ['相談','応募','契約','納品','検収','完了'];
 
     const openPopUp = (data) => {
         setPopupdata(data);
         handleClose();
         handleConfirm();
     }
-    const [openForm, setOpenForm] = useState(false);
-    const [open1, setOpen1] = useState(false);
-    const hadnleOpenForm = () => setOpenForm(true);
-    const hadnleCloseForm = () => setOpenForm(false);
-
-    const handleOpen1 = () => setOpen1(true);
-    const handleClose1 = () => setOpen1(false);
 
     const closefun = () => {
         hadnleCloseForm();
         handleOpen1();
     };
-
-    const [loading, setLoading] = useState(false);
 
     const onFinish = async (values) => {
         setLoading(true);
@@ -123,19 +121,23 @@ const DesignerDashboard = () => {
                     <div className="md:relative md:top-[-120px] left-56">
                         <h1 className="m-0">{user?.user?.username}</h1>
                         <p className="m-0">{user?.user?.bio}</p>
+                        <div className="mt-4 w-32 h-8 rounded-full items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white justify-center flex shadow-md shadow-gray-300">
+                            <span className="text-lg font-bold">
+                                {t("CREATER")}
+                            </span>
+                        </div>
                     </div>
                     <Button type="primary"
                         onClick={hadnleOpenForm}
+                        icon={<LiaUserEditSolid />}
                         className="flex md:top-[-70px] md:left-[50%] md:relative mt-3 text-white px-3 w-28 rounded-lg text-center border-none justify-center"
                     >
                         {t("To Edit")}
                     </Button>
-                    <Button type="primary" className="flex md:relative md:top-[-120px] top-[-30px] left-32 text-white p-2 px-10 rounded-lg text-center">{t("CREATER")}</Button>
                 </div>
-
             </section>
 
-            <section className="bg-gray-100 md:p-16 pl-16 pr-2 gap-2 justify-center py-20 grid grid-cols-12">
+            <section className="bg-gray-100 md:p-16 pl-16 pr-2 gap-2 justify-center py-20 grid grid-cols-12 mt-2">
 
                 <div className="md:col-span-3 col-span-1">
                     <Sidebar setCurrent={handleActive} />
@@ -223,12 +225,12 @@ const DesignerDashboard = () => {
                                     >
                                         <div className="flex flex-row lg:mb-5 items-center">
                                             <div className="flex lg:flex-row flex-col justify-between">
-                                                <div className="flex w-40">
+                                                <div className="flex lg:w-56 w-full">
                                                     <Badge count={transaction?.messages?.length} color="blue" className="mr-2" />
-                                                    <p className="mx-2">{transaction?.product?.name}</p>
-                                                    <p className="mx-2">[{transaction?.client?.username}]</p>
+                                                    <p className="mx-2">{transaction?.product?.name?.length > 9 ? transaction?.product?.name?.slice(0,7)+'...' : transaction?.product?.name}</p>
+                                                    <p className="mx-2">{transaction?.client?.username?.length > 9 ? transaction?.client?.username?.slice(0,7)+'...' : transaction?.client?.username}</p>
                                                 </div>
-                                                <div className="flex justify-end w-40">
+                                                <div className="flex justify-end lg:w-24 w-full">
                                                     <p className="date-last-box-chat">{transaction?.created_at?.slice(0, 10)}</p>
                                                 </div>
                                             </div>
@@ -264,12 +266,12 @@ const DesignerDashboard = () => {
                                     >
                                         <div className="flex flex-row lg:mb-5 items-center">
                                             <div className="flex lg:flex-row flex-col justify-between">
-                                                <div className="flex w-40">
+                                                <div className="flex lg:w-56 w-full">
                                                     <Badge count={transaction?.messages?.length} color="blue" className="mr-2" />
-                                                    <p className="mx-2">{transaction?.product?.name}</p>
-                                                    <p className="mx-2">[{transaction?.client?.username}]</p>
+                                                    <p className="mx-2">{transaction?.product?.name?.length > 9 ? transaction?.product?.name?.slice(0,7)+'...' : transaction?.product?.name}</p>
+                                                    <p className="mx-2">{transaction?.client?.username?.length > 9 ? transaction?.client?.username?.slice(0,7)+'...' : transaction?.client?.username}</p>
                                                 </div>
-                                                <div className="flex justify-end w-40">
+                                                <div className="flex justify-end lg:w-24 w-full">
                                                     <p className="date-last-box-chat">{transaction?.created_at?.slice(0, 10)}</p>
                                                 </div>
                                             </div>
@@ -291,7 +293,7 @@ const DesignerDashboard = () => {
                                             </div>
                                             <div className="chat-jp-name-price">
                                                 <p className="chat-jp-name-price-1">ステータス</p>
-                                                <p className="chat-jp-name-price-2 text-blue-500">{transaction.status}</p>
+                                                <p className={`chat-jp-name-price-2 ${transaction.status === 6 ? "" : "text-blue-500"} `}>{transaction.status < 3 ? "販売済み" : transaction.status < 6 ? "進行中" : "納品完了"}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -305,12 +307,12 @@ const DesignerDashboard = () => {
                                     >
                                         <div className="flex flex-row lg:mb-5 items-center">
                                             <div className="flex lg:flex-row flex-col justify-between">
-                                                <div className="flex w-40">
+                                                <div className="flex lg:w-56 w-full">
                                                     <Badge count={transaction?.messages?.length} color="blue" className="mr-2" />
-                                                    <p className="mx-2">{transaction?.product?.name}</p>
-                                                    <p className="mx-2">[{transaction?.client?.username}]</p>
+                                                    <p className="mx-2">{transaction?.product?.name?.length > 9 ? transaction?.product?.name?.slice(0,7)+'...' : transaction?.product?.name}</p>
+                                                    <p className="mx-2">{transaction?.client?.username?.length > 9 ? transaction?.client?.username?.slice(0,7)+'...' : transaction?.client?.username}</p>
                                                 </div>
-                                                <div className="flex justify-end w-40">
+                                                <div className="flex justify-end lg:w-24 w-full">
                                                     <p className="date-last-box-chat">{transaction?.created_at?.slice(0, 10)}</p>
                                                 </div>
                                             </div>
@@ -332,7 +334,7 @@ const DesignerDashboard = () => {
                                             </div>
                                             <div className="chat-jp-name-price">
                                                 <p className="chat-jp-name-price-1">ステータス</p>
-                                                <p className="chat-jp-name-price-2 text-blue-500">{transaction.status}</p>
+                                                <p className={`chat-jp-name-price-2 ${transaction.status === 6 ? "" : "text-blue-500"} `}>{transaction.status < 3 ? "販売済み" : transaction.status < 6 ? "進行中" : "納品完了"}</p>
                                             </div>
                                         </div>
                                     </div>

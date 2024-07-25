@@ -101,7 +101,7 @@ const Cart = () => {
                                             <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                 <Badge count={item?.quantity} color="blue">
                                                     <a href="#" className="shrink-0 md:order-1">
-                                                        <img className="h-20 w-20" src={item?.product?.image} alt="imac image" />
+                                                        <img className="h-20 w-20" src={item?.product?.image} alt="products" />
                                                     </a>
                                                 </Badge>
                                                 <label htmlFor="counter-input" className="sr-only">数量を選択:</label>
