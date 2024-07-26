@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Select, Input, Tag } from 'antd';
+import { TagGroup } from "../../components/common/tagGroup";
 import { BsEye } from 'react-icons/bs';
 import { FaPenClip } from 'react-icons/fa6';
 import SuccessModal from '../../components/common/modal/success';
@@ -18,6 +19,7 @@ import axios from 'axios';
 
 const AddShowRoom = () => {
     const [isopen, setIsOpen] = useState(false);
+    const [tagInput, setTagInput] = useState('');
     const [errors, setErrors] = useState({});
     const [image, setImage] = useState({});
     const [title, setTitle] = useState("");
@@ -60,12 +62,14 @@ const AddShowRoom = () => {
         }
     }, [title, description])
 
-    useEffect(() => {
-        console.log(tags)
-        console.log(hashtags)
-    }, [hashtags])
 
-    const { tags } = useSelector(state => state.common)
+
+    const handleChangeHash = (e) => {
+        setTagInput(e.target.value);
+        const tagsArray = e.target.value.split(',').map(tag => tag.trim());
+        setHashtags(tagsArray);
+      };
+
 
     const handleClick = async () => {
         if (!errors.title && !errors.description) {
@@ -80,7 +84,7 @@ const AddShowRoom = () => {
             data.append('title', title);
             data.append('budget', basePrice);
             data.append('image', image);
-            data.append('tag_ids', hashtags[0]);
+            data.append('hash_tag', hashtags);
             data.append('description', description);
             await axios.post('/requirement', data);
             setIsLoading(false);
@@ -146,7 +150,7 @@ const AddShowRoom = () => {
                     <p className="col-span-3">タグ</p>
                     <div className="col-span-9">
                         {/* <Select className="w-full" value={hashtags} onChange={setHashtags} options={tags} mode="multiple" /> */}
-                        <Input className="w-full" value={hashtags} onChange={(e) => setHashtags(e.target.value)} />
+                        <Input className="w-full" value={tagInput} onChange={handleChangeHash} />
 
                     </div>
                 </div>
@@ -230,8 +234,9 @@ const AddShowRoom = () => {
                                         </div>
                                         <div className='col-span-4'>
                                             <div className="flex items-center justify-start gap-2 w-full flex-wrap m-0 relative left-0 right-0 ml-auto mr-auto my-5">
-                                                <Tag closable bordered={false} color="blue">{hashtags}</Tag>
-                                                {/* {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)} */}
+                                                {/* <Tag closable bordered={false} color="blue">{hashtags}</Tag> */}
+                                                <TagGroup tags={hashtags} />
+
                                             </div >
                                         </div>
                                     </div>

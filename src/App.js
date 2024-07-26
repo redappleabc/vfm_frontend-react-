@@ -26,7 +26,7 @@ import Container from './components/Container';
 import { useDispatch } from 'react-redux';
 import checkAuth from "./app/auth";
 import { getUser } from './store/slices/userSlice'
-import { setProducts, setCategories, setTags, setRequirements, setCreators, setUnreadMessages, setClients, setCartLength } from './store/slices/commonSlice';
+import { setProducts, setCategories, setRequirements, setCreators, setUnreadMessages, setClients, setCartLength } from './store/slices/commonSlice';
 // import './App.scss'
 
 const App = () => {
@@ -43,7 +43,6 @@ const App = () => {
     const loadData = async () => {
         const products = await axios.get("/products");
         const categories = await axios.get("/categories");
-        const tags = await axios.get("/tags");
         const creators = await axios.get("/creators");
 
         const clients = await axios.get("/clients");
@@ -51,7 +50,6 @@ const App = () => {
         dispatch(setRequirements(requirements.data));
         dispatch(setCreators(creators.data));
         dispatch(setProducts(products.data));
-        dispatch(setTags(tags.data));
 
         dispatch(setClients(clients.data));
         dispatch(setCategories(categories.data));

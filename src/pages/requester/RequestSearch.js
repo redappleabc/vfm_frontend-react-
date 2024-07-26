@@ -6,6 +6,7 @@ import { Avatar } from "antd";
 import { PaginationButtons } from '../../components/common/pagination';
 import { useSelector } from 'react-redux';
 import SetKwd from '../../components/searchTag';
+import { TagGroup } from '../../components/common/tagGroup';
 
 function Requestsearch() {
     const [age, setAge] = useState('');
@@ -64,9 +65,7 @@ function Requestsearch() {
                                         {request?.title}
                                     </p>
                                     <p>{request?.description}</p>
-                                    <p className="font-semibold text-xl md:text-2xl mt-5">
-                                        {request.tags.name}
-                                    </p>
+                                    {/* <TagGroup tags={request?.hash_tag?.split(',').map(tag => tag.trim())} /> */}
                                     <div className="flex items-center gap-2.5 font-bold text-gray-800 mt-20">
                                         {/* <VFM_Avatar img={request?.client?.avatar} /> */}
                                         <Avatar className="absolute bottom-2 w-12 h-12 rounded-full" src={request?.user?.avatar} alt="user" />

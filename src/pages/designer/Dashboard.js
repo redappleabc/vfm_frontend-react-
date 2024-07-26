@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Badge, Input, Space, Radio, Button, Form, message } from 'antd';
 import { FaRegCalendarCheck } from "react-icons/fa";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { LiaUserEditSolid } from "react-icons/lia";
 import Sidebar from "../../components/sidebar";
 import RegFormModal from "../../components/common/modal/RegForm";
 import SuccessModal from "../../components/common/modal/success";
 import BackUploader from "../../components/common/ImageUploader/back";
 import AvatarUploader from "../../components/common/ImageUploader/avatar";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { LiaUserEditSolid } from "react-icons/lia";
 
 const DesignerDashboard = () => {
     const [active, setActive] = useState('REQUEST')
@@ -163,27 +163,32 @@ const DesignerDashboard = () => {
                     {active === 'CHAT' &&
                         <>
                             <h1 className="border-b-7 border-blue-600 text-xl my-8 ml-3">{t("CHAT LIST")}</h1>
-                            {messages?.map((contract, index) => (
-                                <div key={index}
-                                    className=" cursor-pointer sm:items-center gap-5 shadow-md shadow-gray-300 mb-3 p-4 flex justify-between flex-col text-center pb-12 sm:flex-row sm:text-left sm:pb-0mb-5"
-                                    onClick={() => { navigate('/progress/' + contract.id) }}>
-                                    <div className="flex md:flex-row items-center text-gray-700 gap-7 md:pl-5 pl-0 flex-col">
-                                        <div className="">
-                                            <Badge count={contract?.messages?.length} color="blue">
-                                                <Avatar src={contract?.client?.avatar} size={'large'} />
-                                                {/* <img className="w-30 h-30 rounded-full" src={chat.imageUrl} alt="wait" /> */}
-                                            </Badge>
-                                        </div>
-                                        <div className="sub-progresschat-detial">
-                                            <p className="sub-progresschat-detial-p">{contract?.client?.username}</p>
-                                            <p>{contract?.messages[0]?.message_text}</p>
-                                        </div>
-                                    </div>
-                                    <div className="sm:w-40">
-                                        <span className="sub-progresschat-detial-span">{contract?.messages.at(-1)?.created_at?.slice(0, 16).replace('T', ' ')}</span>
-                                    </div>
-                                </div>
-                            ))}
+                            {messages?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))?.map((contract, index) => {
+                                    if(contract?.messages?.length > 0){
+                                        return (
+                                            <div key={index}
+                                                className=" cursor-pointer sm:items-center gap-5 shadow-md shadow-gray-300 mb-3 p-4 flex justify-between flex-col text-center pb-12 sm:flex-row sm:text-left sm:pb-0mb-5"
+                                                onClick={() => { navigate('/progress/' + contract.id) }}>
+                                                <div className="flex md:flex-row items-center text-gray-700 gap-7 md:pl-5 pl-0 flex-col">
+                                                    <div className="">
+                                                        <Badge count={contract?.messages?.length} color="blue">
+                                                            <Avatar src={contract?.client?.avatar} size={'large'} />
+                                                            {/* <img className="w-30 h-30 rounded-full" src={chat.imageUrl} alt="wait" /> */}
+                                                        </Badge>
+                                                    </div>
+                                                    <div className="sub-progresschat-detial">
+                                                        <p className="sub-progresschat-detial-p">{contract?.client?.username}</p>
+                                                        <p>{contract?.messages[0]?.message_text}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="sm:w-40">
+                                                    <span className="sub-progresschat-detial-span">{contract?.messages.at(-1)?.created_at?.slice(0, 16).replace('T', ' ')}</span>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                }
+                            )}
                         </>
                     }
 

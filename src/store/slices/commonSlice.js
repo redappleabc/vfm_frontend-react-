@@ -6,7 +6,6 @@ export const commonSlice = createSlice({
         products: [],
         categories: [],
         creators: [],
-        tags: [],
         cartLength: 0,
         unreadMessages: [],
         requirements: [],
@@ -31,15 +30,12 @@ export const commonSlice = createSlice({
         setCategories: (state, action) => {
             state.categories = action.payload.map(item => { return { value: item.id, label: item?.name } });
         },
-        setTags: (state, action) => {
-            state.tags = action.payload.map(item => { return { value: item.id, label: item?.name } });
-        },
         setRequirements: (state, action) => {
             state.requirements = action.payload;
         },
     }
 })
 
-export const { setProducts, setCategories, setTags, setRequirements, setCreators, setUnreadMessages, setClients, setCartLength } = commonSlice.actions
+export const { setProducts, setCategories, setRequirements, setCreators, setUnreadMessages, setClients, setCartLength } = commonSlice.actions
 
 export default commonSlice.reducer

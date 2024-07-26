@@ -14,6 +14,7 @@ import ContractMessages from "../ContractChat";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'swiper/css';
+import { TagGroup } from "../../components/common/tagGroup";
 
 const Requester = () => {
     const { id } = useParams();
@@ -80,6 +81,7 @@ const Requester = () => {
                                 </div>
                                 <div className="mt-5 flex flex-col gap-5">
                                     <p> {requirement?.description}</p>
+                                    <TagGroup tags={requirement?.hash_tag?.split(',').map(tag => tag.trim())} />
                                     <p onClick={handleOpen} className="text-blue-700 cursor-pointer mt-4 mb-4">...続きを見る</p>
                                 </div>
                                 <div className="flex pl-8 font-bold gap-9 justify-between mt-3">

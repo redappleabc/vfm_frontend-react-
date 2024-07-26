@@ -160,9 +160,11 @@ const Product = () => {
                                 </div>
                                 <div className="flex items-center px-5 py-1 border-b">
                                     <span className="font-bold w-24">{t("hashtag")}:</span>
-                                    <div className="flex items-center justify-start gap-2 w-full flex-wrap m-0 relative left-0 right-0 ml-auto mr-auto my-5">
+                                    <TagGroup tags={product?.hash_tag?.split(',')?.map(tag => tag.trim())} />
+                                    {/* <div className="flex items-center justify-start gap-2 w-full flex-wrap m-0 relative left-0 right-0 ml-auto mr-auto my-5">
+                                        <T
                                         {product?.tags?.map(tag => <Tag key={tag.id} closable bordered={false} color="blue">{tag.name}</Tag>)}
-                                    </div >
+                                    </div > */}
                                 </div>
                                 <div className="flex items-center px-5 py-1 border-b">
                                     <span className="font-bold mr-2">{t("price")}:</span>

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import CustomModal from "../../components/custommodal"
 import BackUploader from "../../components/common/ImageUploader/back";
 import AvatarUploader from "../../components/common/ImageUploader/avatar";
-
 import Sidebar from "../../components/sidebar";
 import FormModal from "../../components/common/modal/form";
 import SuccessModal from "../../components/common/modal/success";
-import { useSelector } from "react-redux";
 
 const style = {
     position: 'absolute',

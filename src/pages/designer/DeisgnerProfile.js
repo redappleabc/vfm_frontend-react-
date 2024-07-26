@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
+import { useParams } from 'react-router-dom';
 import CustomModal from "../../components/custommodal"
 import RegFormModal from "../../components/common/modal/RegForm";
 import SuccessModal from "../../components/common/modal/success";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
-import { DesignerData } from '../../constant/data'
 import ImageShow from "../../components/common/ImageUploader/show";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const DesignerProfile = () => {
     const { id } = useParams();

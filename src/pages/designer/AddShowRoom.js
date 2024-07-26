@@ -19,6 +19,7 @@ const AddShowRoom = () => {
     const [isopen, setIsOpen] = useState(false);
     const [openPreview, setOpenPreview] = useState(false);
     const [title, setTitle] = useState('');
+    const [tagInput, setTagInput] = useState('');
     const [category, setCategory] = useState(null);
     const [hashtags, setHashtags] = useState([]);
     const [basePrice, setBasePrice] = useState(100);
@@ -35,7 +36,7 @@ const AddShowRoom = () => {
     const handleClosePreview = () => setOpenPreview(false);
     const handleOpenPreview = () => setOpenPreview(true);
 
-    const { tags, categories } = useSelector(state => state.common)
+    const {categories } = useSelector(state => state.common)
 
     useEffect(() => {
         const newErrors = {};
@@ -46,16 +47,17 @@ const AddShowRoom = () => {
         } else {
             newErrors.title = "";
         }
-        // if (!hashtags) {
-        //     newErrors.hashtags = 'ハッシュタグは必須!';
-        // } else if (hashtags.split(',').length > 10) {
-        //     newErrors.hashtags = '10件まで登録可能';
-        // }
+        
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         }
     }, [title, hashtags])
 
+    const handleChangeHash = (e) => {
+        setTagInput(e.target.value);
+        const tagsArray = e.target.value.split(',').map(tag => tag.trim());
+        setHashtags(tagsArray);
+      };
 
 
     const handleClick = async () => {
@@ -71,7 +73,7 @@ const AddShowRoom = () => {
             data.append('category_id', category);
             data.append('price', basePrice);
             data.append('image', image);
-            data.append('tag_ids', hashtags[0]);
+            data.append('hash_tag', hashtags);
             data.append('description', title);
             await axios.post('/products', data);
             setIsLoading(false);
@@ -130,7 +132,7 @@ const AddShowRoom = () => {
                     <div className="col-span-1"></div>
                     <div className="col-span-9">
                         {/* <Input className="w-full" value={hashtags} onChange={setHashtags} options={tags} mode="multiple" /> */}
-                        <Input className="w-full" value={hashtags} onChange={(e) => setHashtags(e.target.value)} />
+                        <Input className="w-full" value={tagInput} onChange={handleChangeHash} />
 
                     </div>
                 </div>
@@ -305,8 +307,8 @@ const AddShowRoom = () => {
                                         {/* <TagGroup tags={['＃2024-SS', 'First', 'Collection', '#DRESS', '#JAPA']} /> */}
                                         <div className='col-span-4'>
                                             <div className="flex items-center justify-start gap-2 w-full flex-wrap m-0 relative left-0 right-0 ml-auto mr-auto my-5">
-                                            <Tag closable bordered={false} color="blue">{hashtags}</Tag>
-                                                {/* {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)} */}
+                                            <TagGroup tags={hashtags} />
+                                            {/* {hashtags.map(item => <Tag key={item.id} closable bordered={false} color="blue">{tags?.filter(tag => tag.value === item)[0]?.label}</Tag>)} */}
                                             </div >
                                         </div>
                                     </div>
@@ -366,7 +368,7 @@ const AddShowRoom = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="gird md:col-span-6 flex-row border border-gray-300 m-auto mt-10 text-center w-full py-10">
+                            <div className="gird md:col-span-6 flex-row border border-gray-300  m-auto mt-10 text-center w-full py-10">
                                 <div className=' shadow-lg shadow-gray-400 p-5'>
                                     <VFM_Avatar img={user?.user?.avatar} size={32} path="/designer/profile" />
                                     <h1 className="text-[#5E4FDC]">CREATER</h1>
@@ -378,7 +380,9 @@ const AddShowRoom = () => {
                                                 <span>HASHTAGS</span>
                                             </div>
                                             <div className='col-span-4'>
-                                            <Tag closable bordered={false} color="blue">{hashtags}</Tag>                                                <hr />
+                                                <TagGroup tags={hashtags} />
+                                            {/* <Tag closable bordered={false} color="blue">{hashtags}</Tag>    */}
+                                            <hr />
                                             </div>
                                         </div>
                                         <div className='grid grid-cols-6 mb-5'>

@@ -216,9 +216,9 @@ function Progress() {
                                 <hr />
                                 <div className="grid grid-cols-5 p-5">
                                     <p className="col-span-1">ハッシュタグ</p>
-                                    {/* <div className="col-span-4">
-                                        <TagGroup tags={["＃KAWAII", "#ANIME", "＃DRESS", "＃JAPAN"]} />
-                                    </div> */}
+                                    <div className="col-span-4">
+                                        <TagGroup tags={contract?.product?.hash_tag} />
+                                    </div>
                                 </div>
 
                             </div>
