@@ -172,6 +172,7 @@
   "Reject inspection": "検収を差戻しする",
   "Contract payment": "契約金の支払い",
   "contract": "契約する",
-  "Fee": "料金"
+  "Fee": "料金",
+  "The maximum file size is 10 MB and only RAR or ZIP file formats are permitted.":"ファイルサイズは最大10MBで、ファイル形式はRARまたはZIPのみ許可されています。"
 
 }

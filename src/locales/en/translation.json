@@ -171,6 +171,7 @@
   "Contract payment": "Contract payment",
   "contract": "contract",
   "Fee": "Fee",
-  "Option":"Option"
+  "Option":"Option",
+  "The maximum file size is 10 MB and only RAR or ZIP file formats are permitted.":"The maximum file size is 10 MB and only RAR or ZIP file formats are permitted."
   
 }

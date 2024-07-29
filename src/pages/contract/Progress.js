@@ -12,7 +12,7 @@ import { BsFillSendCheckFill } from "react-icons/bs";
 import { TagGroup } from '../../components/common/tagGroup'
 import { RiFolderReceivedLine } from "react-icons/ri";
 import VFM_Avatar from "../../components/common/avatar";
-import { Breadcrumb, Button, Modal, Input, Upload, Image } from 'antd'
+import { Breadcrumb, Button, Modal, Input, Upload, Alert } from 'antd'
 import UploadButton from "../../components/common/button/UploadButton";
 import { FcUpload } from "react-icons/fc";
 import { GrRevert } from "react-icons/gr";
@@ -387,9 +387,10 @@ function Progress() {
                             </div>
                         </> : contract?.status === 3 ?
                             <>
-                                <div className="flex flex-row">
+                                <div className="flex flex-col gap-3">
+                                <Alert message={t("The maximum file size is 10 MB and only RAR or ZIP file formats are permitted.")} type="info" showIcon />
                                 <input type="file" onChange={handleImageChange} />
-                                {!file && <p>{t("No file chosen")}</p>}
+                                {/* {!file && <p>{t("No file chosen")}</p>} */}
                                     {/* <Button type="default" icon={<FcUpload />} >
                                         ファイルを選択
                                     </Button>
