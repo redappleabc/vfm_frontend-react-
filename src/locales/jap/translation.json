@@ -158,5 +158,20 @@
   "・If you would like to register as a client (person who purchases VIRTUAL FASHION), please click here.":"・クライアント VIRTUAL FASHIONを購入する人）として登録したい方はこちらから",
   "・Both artists/clients please check here.":"・クリエイター/クライアントともにこちらをご確認ください ",
   "■Inquiries to VIRTUAL FASHION MALL":"■VIRTUAL FASHION MALLへのお問い合わせ",
-  "·Please check here":"・こちらをご確認ください "
+  "·Please check here":"・こちらをご確認ください ",
+  "Date of purchase":"購入日",
+  "Optional charges":"オプション料金",
+  "Purchase price":"購入金額",
+  "basic rate":"基本料金",
+  "points":"点",
+  "Load More":"もっと読む",
+  "No file chosen":"ファイルが選択されていません",
+  "Option":"オプション",
+  "Complete inspection": "検収を完了する",
+  "Receive delivery": "配達を受け取る",
+  "Reject inspection": "検収を差戻しする",
+  "Contract payment": "契約金の支払い",
+  "contract": "契約する",
+  "Fee": "料金"
+
 }

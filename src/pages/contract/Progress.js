@@ -12,7 +12,7 @@ import { BsFillSendCheckFill } from "react-icons/bs";
 import { TagGroup } from '../../components/common/tagGroup'
 import { RiFolderReceivedLine } from "react-icons/ri";
 import VFM_Avatar from "../../components/common/avatar";
-import { Breadcrumb, Button, Modal, Input, Select } from 'antd'
+import { Breadcrumb, Button, Modal, Input, Upload, Image } from 'antd'
 import UploadButton from "../../components/common/button/UploadButton";
 import { FcUpload } from "react-icons/fc";
 import { GrRevert } from "react-icons/gr";
@@ -24,6 +24,7 @@ import { useSelector } from "react-redux";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { BsFillSendArrowUpFill } from "react-icons/bs";
 import { TbCoinYen } from "react-icons/tb";
+import { UploadOutlined, DownloadOutlined } from '@ant-design/icons';
 
 const style = {
     position: 'absolute',
@@ -41,10 +42,10 @@ function Progress() {
     const { id } = useParams();
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
+    const [preview, setPreview] = useState('');
+    const [file, setFile] = useState("");
     const [openContract, setOpenContract] = useState(false);
-    const [open1, setOpen1] = useState(false);
     const [contract, setContract] = useState()
-    const [chatRegister, setChatRegister] = useState(false);
     const { t, i18n } = useTranslation();
     const [isLoadingComplete, setIsLoadingComplete] = useState(false);
     const [isLoadingRevert, setIsLoadingRevert] = useState(false);
@@ -126,19 +127,37 @@ function Progress() {
             .catch(error => {
                 message.error(error)
             });
+        handleCloseContract()
         setIsLoadingContract(false)
     }
 
     const handleDelivery = async () => {
-        await axios.put('/contracts_status/' + id, { status: 4 })
+        const data = new FormData();
+            data.append('status', '4');
+            data.append('delivery_file', file);
+            data.append('delivery_file_name', file.name);
+            data.append('delivery_file_type', file.type);
+        await axios.post('/contracts_status/' + id, data)
             .then(res => {
                 fetchContract()
                 message.success('Successfully deliveried!')
             })
-            .catch(error => {
-                message.error('Error adding to cart:', error)
+            .catch(err => {
+                message.error('Error delivering!')
             });
     }
+
+    const handleImageChange = (e) => {
+        setFile(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleTemplateChange = (value) => {
         form.setFieldsValue({ message_text: value });
@@ -149,6 +168,23 @@ function Progress() {
     const closefun = () => {
         handleClose();
     };
+
+    const handleDownload = async () => {
+        axios.get(`/contract-download/${id}`, {
+            responseType: 'blob'
+          })
+          .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'delivery_file');
+            document.body.appendChild(link);
+            link.click();
+          })
+          .catch(error => {
+            message.error('Failed to download file');
+          });
+      };
 
     return (
         <>
@@ -174,22 +210,22 @@ function Progress() {
                         </div>
                         <div>
                             <div className="flex bg-badge text-white md:px-5 px-1">
-                                <p className="p-3">購入日　2024/2/10 </p>
-                                <p className="p-3">購入金額　＄920USD</p>
+                                <p className="p-3">{t("Date of purchase")}　2024/2/10 </p>
+                                <p className="p-3">{t("Purchase price")}　＄920USD</p>
                             </div>
                             <div className="p-3 border shadow-md shadow-gray-300">
                                 <div className="grid grid-cols-6 gap-5 p-3">
-                                    <p className="col-span-3 border-blue-700">基本料金</p>
-                                    <p className="col-span-3">購入日　{contract?.product?.created_at?.slice(0, 10)} </p>
+                                    <p className="col-span-3 border-blue-700">{t("basic rate")}</p>
+                                    <p className="col-span-3">{t("Date of purchase")}　{contract?.product?.created_at?.slice(0, 10)} </p>
                                 </div>
                                 <div className="grid grid-cols-6 gap-5 p-3">
-                                    <p>基本料金</p>
+                                    <p>{t("basic rate")}</p>
                                     <p className="col-span-2 font-bold text-gray-800">{contract?.product?.name} </p>
                                     <p>${contract?.product?.price} </p>
                                 </div>
                                 <hr />
                                 <div className="flex gap-5">
-                                    <p className="p-3">オプション料金</p>
+                                    <p className="p-3">{t("Optional charges")}</p>
                                 </div>
                                 <hr />
                                 <div className="grid grid-cols-6 gap-5 p-3">
@@ -215,7 +251,7 @@ function Progress() {
                                 </div>
                                 <hr />
                                 <div className="grid grid-cols-5 p-5">
-                                    <p className="col-span-1">ハッシュタグ</p>
+                                    <p className="col-span-1">{t("hashtag")}</p>
                                     <div className="col-span-4">
                                         <TagGroup tags={contract?.product?.hash_tag} />
                                     </div>
@@ -240,16 +276,16 @@ function Progress() {
                                         <p className="col-span-4">{contract?.client?.username}</p>
                                     </div>
                                     <div className="grid grid-cols-6 gap-5 p-3">
-                                        <p className="col-span-2 border-blue-700">料金</p>
+                                        <p className="col-span-2 border-blue-700">{t("fee")}</p>
                                         <p className="col-span-4">＄{contract?.price}</p>
                                     </div>
                                     <div className="grid grid-cols-6 gap-5 p-3">
-                                        <p className="col-span-2 border-blue-700">購入日</p>
+                                        <p className="col-span-2 border-blue-700">{t("Date of purchase")}</p>
                                         <p className="col-span-4">{contract?.created_at?.slice(0, 10)}</p>
                                     </div>
                                     <div className="grid grid-cols-6 gap-5 p-3">
-                                        <p className="col-span-2 border-blue-700">オプション</p>
-                                        <p className="col-span-4">６点</p>
+                                        <p className="col-span-2 border-blue-700">{t("Option")}</p>
+                                        <p className="col-span-4">６{t("points")}</p>
                                     </div>
                                 </div>
                             </div>
@@ -263,8 +299,7 @@ function Progress() {
                     <ContractMessages contractId={id} />
                     <p onClick={handleOpen} className="my-5 text-blue-700 cursor-pointer title-message-box">{t("定型文登録はこちらから（３つまで登録可能です。）")}</p>
                 </section>
-                {
-                    contract?.status < 3 ? user?.user?.user_type === 'Client' ?
+                {contract?.status < 3 ? user?.user?.user_type === 'Client' ?
                         <div className="flex items-center justify-center mt-5">
                             <Button
                                 loading={isLoadingContract}
@@ -272,10 +307,42 @@ function Progress() {
                                 type="primary"
                                 className='py-6 px-10'
                                 icon={<FaRegCalendarCheck className="w-5 h-5" />}  >
-                                契約する
+                                {t("contract")}
                             </Button>
                         </div> : <></> : user?.user?.id === contract?.client_id ?
                         <>
+                        <div>
+                        {contract?.delivery_file && (
+                            <div style={{ marginTop: '20px' }}>
+                                <img src={contract?.delivery_file} alt="preview" style={{ width: '200px' }} />
+                            </div>
+                            )}
+
+                            {contract?.delivery_file_type?.includes('image') ? (
+                            <>
+                                <Button 
+                                type="primary" 
+                                icon={<DownloadOutlined />} 
+                                onClick={handleDownload}
+                                disabled={!contract?.delivery_file}
+                                style={{ marginTop: '20px' }}
+                                >
+                                {contract?.delivery_file_name}
+                                </Button>
+                                <Image src={contract?.delivery_file} />
+                            </>
+                            ) : (
+                            <Button 
+                                type="primary" 
+                                icon={<DownloadOutlined />} 
+                                onClick={handleDownload}
+                                disabled={!contract?.delivery_file}
+                                style={{ marginTop: '20px' }}
+                            >
+                                {contract?.delivery_file_name}
+                            </Button>
+                            )}
+                            </div>
                             <div className="flex flex-wrap gap-5 justify-center mt-10 " >
                                 <Button
                                     disabled={contract?.status !== 5}
@@ -286,7 +353,7 @@ function Progress() {
                                     danger
                                     size="large"
                                     className="px-12">
-                                    検収を完了する
+                                    {t("Complete inspection")}
                                 </Button>
                                 <Button
                                     disabled={contract?.status !== 4}
@@ -295,7 +362,7 @@ function Progress() {
                                     icon={<RiFolderReceivedLine />}
                                     size="large"
                                     className="bg-blue-500 px-12 text-white ">
-                                    配達を受け取る
+                                    {t("Receive delivery")}
                                 </Button>
                                 <Button
                                     disabled={contract?.status !== 4}
@@ -305,28 +372,28 @@ function Progress() {
                                     icon={<GrRevert />}
                                     size="large"
                                     className="px-12 bg-black">
-                                    検収を差戻しする
+                                    {t("Reject inspection")}
                                 </Button>
                             </div>
                         </> : contract?.status === 3 ?
                             <>
-                                <UploadButton />
-                                <hr className="mt-10 pb-5" />
                                 <div className="flex flex-row">
-                                    <Button type="default" icon={<FcUpload />} >
+                                <input type="file" onChange={handleImageChange} />
+                                {!file && <p>{t("No file chosen")}</p>}
+                                    {/* <Button type="default" icon={<FcUpload />} >
                                         ファイルを選択
                                     </Button>
-                                    <p className="ml-2">遛択されていません</p>
+                                    <p className="ml-2">遛択されていません</p> */}
                                 </div>
                                 <div className="flex flex-wrap gap-5 justify-center mt-10" >
                                     <Button
-                                        disabled={contract?.status > 3}
+                                        disabled={contract?.status > 3 || !file}
                                         onClick={handleDelivery}
                                         type="primary"
                                         icon={<BsFillSendArrowUpFill />}
                                         size="large"
                                         className="px-20">
-                                        納品する
+                                        {t("Deliver")}
                                     </Button>
                                 </div>
                             </> : <></>
@@ -337,12 +404,12 @@ function Progress() {
                 onCancel={handleCloseContract}
                 footer={
                     <Button type="primary" onClick={handleContract} icon={<TbCoinYen className="w-5 h-5 text-yellow-200" />} className="bg-blue-500">
-                        <span className="text-white-200">契約金の支払い</span>
+                        <span className="text-white-200">{t("Contract payment")}</span>
                     </Button>
                 }
             >
                 <div className="pt-10 flex flex-row">
-                    <label className="mr-2">購入金額: </label>
+                    <label className="mr-2">{t("Purchase price")}: </label>
                     <Input type="number" className="w-32" value={contractPrice} onChange={handleChange} />
                     <span className="ml-2">$</span>
                 </div>

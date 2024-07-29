@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, message, Alert, Select } from 'antd';
 import axios from 'axios';
 import ChatList from '../components/chatlist';
+import { useTranslation } from 'react-i18next';
 
 const { TextArea } = Input;
 
@@ -15,6 +16,7 @@ const ContractMessages = ({ contractId }) => {
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const { t, i18n } = useTranslation();
 
     const [templates, setTemplates] = useState([
         'Hello, how can I assist you?',
@@ -34,7 +36,6 @@ const ContractMessages = ({ contractId }) => {
     }, [])
 
     useEffect(() => {
-        console.log(templates);
         setHasMore(messages?.length > page * 5)
         setLoadedMessage(messages?.slice(0, page * 5))
     }, [page, messages, templates])
@@ -94,7 +95,7 @@ const ContractMessages = ({ contractId }) => {
             {error && <Alert message={error} type="error" showIcon />}
             {hasMore && (
                 <Button onClick={() => setPage(page + 1)} className="w-full my-2">
-                    Load More
+                    {t("Load More")}
                 </Button>
             )}
             <ChatList data={loadedMessage.sort((a, b) => new Date(a.created_at) - new Date(b.created_at))} markAsRead={markAsRead} unreadMessages={unreadMessages} />
@@ -141,7 +142,6 @@ const ContractMessages = ({ contractId }) => {
                             なし
                         </Select.Option>
                         {templates?.map((template, index) => (
-
                             <Select.Option key={index} value={template?.content}>
                                 {template?.title}
                             </Select.Option>
@@ -149,7 +149,6 @@ const ContractMessages = ({ contractId }) => {
                     </Select>
                     }
                 </Form.Item>
-
             </Form >
         </div >
     );

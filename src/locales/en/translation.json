@@ -75,6 +75,9 @@
   "Nominate the main designer and make a request":"Nominate the main designer and make a request",
   "Category":"Category",
   "hashtag":"hashtag",
+  "points":"points",
+  "Load More":"Load More",
+  "No file chosen":"No file chosen",
   "price":"price",
   "option":"option",
   "Your inquiry will be published on the product page, so please refrain from writing any information that could identify you.":"Your inquiry will be published on the product page, so please refrain from writing any information that could identify you.",
@@ -103,6 +106,8 @@
   "Register a fixed phrase (up to 5 can be registered)":"Register a fixed phrase (up to 5 can be registered)",
   "200 characters left (full-width)":"200 characters left (full-width)",
   "Delete":"Delete",
+  "Date of purchase":"Date of purchase",
+  "Optional charges":"Optional charges",
   "Register":"Register",
   "Delivery received":"Delivery received",
   "Delivery receipt":"Delivery receipt",
@@ -158,5 +163,14 @@
   "・If you would like to register as a client (person who purchases VIRTUAL FASHION), please click here.":"・If you would like to register as a client (person who purchases VIRTUAL FASHION), please click here.",
   "・Both artists/clients please check here.":"・Both artists/clients please check here.",
   "■Inquiries to VIRTUAL FASHION MALL":"■Inquiries to VIRTUAL FASHION MALL",
-  "·Please check here":"·Please check here"
+  "·Please check here":"·Please check here",
+  "Purchase price":"Purchase price",
+  "Complete inspection": "Complete inspection",
+  "Receive delivery": "Receive delivery",
+  "Reject inspection": "Reject inspection",
+  "Contract payment": "Contract payment",
+  "contract": "contract",
+  "Fee": "Fee",
+  "Option":"Option"
+  
 }

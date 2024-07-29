@@ -104,7 +104,7 @@ const Auth = () => {
             }
         }
         catch (err) {
-            toast.error(err.data.message)
+            toast.error(err?.data?.message)
         }
     };
 
