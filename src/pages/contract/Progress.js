@@ -80,7 +80,7 @@ function Progress() {
 
     const handleRevert = async () => {
         setIsLoadingRevert(true)
-        await axios.put('/contracts_status/' + id, { price: contractPrice, status: 3 })
+        await axios.post('/contracts_status/' + id, { price: contractPrice, status: 3 })
             .then(res => {
                 fetchContract()
                 message.success('reverted!')
@@ -93,7 +93,7 @@ function Progress() {
 
     const handleReceived = async () => {
         setIsLoadingReceived(true)
-        await axios.put('/contracts_status/' + id, { status: 5 })
+        await axios.post('/contracts_status/' + id, { status: 5 })
             .then(res => {
                 fetchContract()
                 message.success('received!')
@@ -106,7 +106,7 @@ function Progress() {
 
     const handleComplete = async () => {
         setIsLoadingComplete(true)
-        const res = await axios.put('/contracts_status/' + id, { status: 6 })
+        const res = await axios.post('/contracts_status/' + id, { status: 6 })
             .then(res => {
                 fetchContract()
                 message.success('contract is completed successfully!')
@@ -119,7 +119,7 @@ function Progress() {
 
     const handleContract = async () => {
         setIsLoadingContract(true)
-        await axios.put('/contracts_status/' + id, { status: 3 })
+        await axios.post('/contracts_status/' + id, { status: 3 })
             .then(res => {
                 fetchContract()
                 message.success('Success!')
@@ -169,22 +169,39 @@ function Progress() {
         handleClose();
     };
 
-    const handleDownload = async () => {
-        axios.get(`/contract-download/${id}`, {
-            responseType: 'blob'
-          })
-          .then(response => {
+    // const handleDownload = async () => {
+    //     axios.get(`/contract-download/${id}`, {
+    //         responseType: 'blob'
+    //       })
+    //       .then(response => {
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.setAttribute('download', 'delivery_file');
+    //         document.body.appendChild(link);
+    //         link.click();
+    //       })
+    //       .catch(error => {
+    //         message.error('Failed to download file');
+    //       });
+    //   };
+
+    const handleDownload = () => {
+        axios({
+            url: `/contract-download/${id}`,
+            method: 'GET',
+            responseType: 'blob', // important
+        })
+        .then((response) => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', 'delivery_file');
+            link.setAttribute('download', contract?.delivery_file_name); // or any other extension
             document.body.appendChild(link);
             link.click();
-          })
-          .catch(error => {
-            message.error('Failed to download file');
-          });
-      };
+        });
+    };
+
 
     return (
         <>
@@ -312,12 +329,6 @@ function Progress() {
                         </div> : <></> : user?.user?.id === contract?.client_id ?
                         <>
                         <div>
-                        {contract?.delivery_file && (
-                            <div style={{ marginTop: '20px' }}>
-                                <img src={contract?.delivery_file} alt="preview" style={{ width: '200px' }} />
-                            </div>
-                            )}
-
                             {contract?.delivery_file_type?.includes('image') ? (
                             <>
                                 <Button 
@@ -329,7 +340,6 @@ function Progress() {
                                 >
                                 {contract?.delivery_file_name}
                                 </Button>
-                                <Image src={contract?.delivery_file} />
                             </>
                             ) : (
                             <Button 

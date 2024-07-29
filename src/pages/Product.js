@@ -98,7 +98,7 @@ const Product = () => {
 
     const handleApply = async () => {
         setLoading(true);
-        const res = await axios.put('/contracts_status/' + contractId, {
+        const res = await axios.post('/contracts_status/' + contractId, {
             price: product?.price,
             status: 2
         });
