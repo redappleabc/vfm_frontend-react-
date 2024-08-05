@@ -28,7 +28,7 @@ h1 {
     border-radius: 10px;
     padding: 20px;
     position: absolute;
-    top: 81%;
+    top: 83%;
     width: 100%;
     transition: box-shadow .3s ease-in-out,
                 top .3s ease-in-out;
@@ -36,7 +36,7 @@ h1 {
 
 .item-card:hover .item-details {
     box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
-    top: 61%;
+    top: 63%;
 }
 
 .item-details > .min-details {

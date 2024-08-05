@@ -34,10 +34,11 @@ const ItemCard = ({ image, name, price, updated_at, id }) => {
                     alt="t-shirt"
                 />
             </figure>
-            <section className="item-details">
+            
+            <section className="item-details" draggable={false}>
                 <div className="min-details">
-                    <h1>{name}</h1>
-                    <h1 className="price">{price}$</h1>
+                    <h2 className="font-extrabold text-blue-500">{name?.length > 11 ? name?.slice(0,9)+'...' : name}</h2>
+                    <h2 className="font-bold text-red-500">${price}</h2>
                 </div>
                 <Button type="primary" className="w-full my-7 py-5" onClick={() => { navigate('/product/' + id) }} icon={<CiViewList className="w-6 h-6" />} >商品詳細画面へ</Button>
             </section>
