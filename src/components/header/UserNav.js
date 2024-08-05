@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { LuLogIn } from "react-icons/lu";
+import { PiLockLaminatedOpenFill } from "react-icons/pi";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa";
 import { TbBrandPinterest } from "react-icons/tb";
@@ -226,7 +226,7 @@ const UserNav = () => {
                                 </Badge>
                             </Dropdown>
                         </> :
-                        <Button shape="primary" className="mx-4" icon={<LuLogIn className="h-6 w-6 text-white-500" />} onClick={() => { navigate('/auth') }} />
+                        <Button shape="primary" className="mx-4" icon={<PiLockLaminatedOpenFill  className="h-6 w-6 text-white-500" />} onClick={() => { navigate('/auth') }} />
                     }
                 </div>
             </nav >

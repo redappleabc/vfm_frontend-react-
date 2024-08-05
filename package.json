@@ -36,6 +36,7 @@
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
     "sass": "^1.77.6",
+    "string-similarity": "^4.0.4",
     "sweetalert2": "^11.11.0",
     "swiper": "^11.1.4",
     "toast": "^0.5.4",

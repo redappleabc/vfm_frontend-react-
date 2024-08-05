@@ -21,6 +21,8 @@ function Landing() {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(1);
   const [newProducts, setNewProducts] = useState([]);
+  const [newItem, setNewItem] = useState([]);
+  const [newAvatar, setNewAvatar] = useState([]);
   const [categoryProducts, setCategoryProducts] = useState([]);
 
   const { products } = useSelector((state) => state.common);
@@ -31,6 +33,18 @@ function Landing() {
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, 5);
     setNewProducts(sortedProducts);
+
+    const avatarProducts = [...products]
+      .filter(item => item?.category?.name === 'AVATAR/CHARACTER')
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, 5);
+      setNewAvatar(avatarProducts);
+
+    const ItemProducts = [...products]
+      .filter(item => item?.category?.name === 'ITEM')
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, 5);
+      setNewItem(ItemProducts);
   }, [products]);
 
   useEffect(() => {
@@ -45,7 +59,7 @@ function Landing() {
     navigate('/auth')
   }
 
-  const titles = ["APPAREL", "ACCESSORY", "HAIRDO", "AVATAR", "EFFECT", "INTERIOR DECORATION"];
+  const titles = ["APPAREL", "ACCESSORY", "HAIRDO", "AVATAR/CHARACTER", "MAKE UP", "ITEM"];
   return (
     <>
       {/* <Header page={"webscreens"} pagetitle={"landing_screen"} /> */}
@@ -79,6 +93,14 @@ function Landing() {
       <section id="products" className="my-32">
         <h1 className="text-badge font-extrabold text-3xl mb-2"> {t("NEW PRODUCTS")}</h1>
         <ProductCard products={newProducts} isNew={true} />
+      </section>
+      <section id="products" className="my-32">
+        <h1 className="text-badge font-extrabold text-3xl mb-2"> {t("NEW AVATAR/CHARACTER")}</h1>
+        <ProductCard products={newAvatar} isNew={true} />
+      </section>
+      <section id="products" className="my-32">
+        <h1 className="text-badge font-extrabold text-3xl mb-2"> {t("NEW ITEM")}</h1>
+        <ProductCard products={newItem} isNew={true} />
       </section>
       <section id="Active-Creator">
         <div className="bg-gray-100 p-10 text-center item-center">

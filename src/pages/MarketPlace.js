@@ -5,6 +5,7 @@ import SearchBox from "../components/common/searchBox";
 import SetKwd from "../components/searchTag";
 import { Breadcrumb } from 'antd';
 import { PaginationButtons } from "../components/common/pagination";
+import stringSimilarity from 'string-similarity';
 
 const MarketPlace = () => {
     const { products } = useSelector(state => state.common);
@@ -15,10 +16,23 @@ const MarketPlace = () => {
     }, [products]);
 
     const handleSearch = (searchQuery) => {
-        const filtered = products.filter(product =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        setFilteredProducts(filtered);
+        const calculateSimilarity = (field, query) => {
+            return stringSimilarity.compareTwoStrings(field?.toLowerCase() || '', query);
+        };
+
+        const productsWithScores = products.map(product => {
+            const nameScore = calculateSimilarity(product.name, searchQuery);
+            const categoryScore = calculateSimilarity(product.category?.name, searchQuery);
+            const hashScore = calculateSimilarity(product.hash_tag, searchQuery);
+            const maxScore = Math.max(nameScore, categoryScore, hashScore);
+
+            return { product, score: maxScore };
+        });
+
+        const sortedProducts = productsWithScores.sort((a, b) => b.score - a.score);
+        const top5Products = sortedProducts.slice(0, 5).map(item => item.product);
+
+        setFilteredProducts(top5Products);
     };
 
     return (

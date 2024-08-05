@@ -69,8 +69,7 @@ const App = () => {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        if (token) {
-
+        if (token !== null) {
             loadCart();
             fetchUnreadMessages();
             const interval = setInterval(() => {

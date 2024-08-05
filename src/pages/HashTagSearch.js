@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import ItemCard from "../components/card/ItemCard/ItemCard";
 import SearchBox from "../components/common/searchBox";
 import { PaginationButtons } from "../components/common/pagination";
-import SetKwd from '../components/searchTag/index'
+import SetKwd from '../components/searchTag/index';
+import stringSimilarity from 'string-similarity';
 
 function Hashtagsearch() {
     const { products } = useSelector(state => state.common);
@@ -14,12 +15,28 @@ function Hashtagsearch() {
         setFilteredProducts(products);
     }, [products]);
 
+    
+
     const handleSearch = (searchQuery) => {
-        const filtered = products.filter(product =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        setFilteredProducts(filtered);
+        const calculateSimilarity = (field, query) => {
+            return stringSimilarity.compareTwoStrings(field?.toLowerCase() || '', query);
+        };
+
+        const productsWithScores = products.map(product => {
+            const nameScore = calculateSimilarity(product.name, searchQuery);
+            const categoryScore = calculateSimilarity(product.category?.name, searchQuery);
+            const hashScore = calculateSimilarity(product.hash_tag, searchQuery);
+            const maxScore = Math.max(nameScore, categoryScore, hashScore);
+
+            return { product, score: maxScore };
+        });
+
+        const sortedProducts = productsWithScores.sort((a, b) => b.score - a.score);
+        const top5Products = sortedProducts.slice(0, 5).map(item => item.product);
+
+        setFilteredProducts(top5Products);
     };
+
 
     return (
         <>
