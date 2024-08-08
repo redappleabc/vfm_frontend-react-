@@ -1,21 +1,24 @@
-import { Breadcrumb } from 'antd';
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
+import { Breadcrumb, Select } from 'antd';
 import ItemCard from "../components/card/ItemCard/ItemCard";
 import SearchBox from "../components/common/searchBox";
 import { PaginationButtons } from "../components/common/pagination";
 import SetKwd from '../components/searchTag/index';
 import stringSimilarity from 'string-similarity';
 
+const { Option } = Select;
+
 function Hashtagsearch() {
     const { products } = useSelector(state => state.common);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [sortedResults, setSortedResults] = useState([]);
 
     useEffect(() => {
+        console.log(products)
         setFilteredProducts(products);
+        setSortedResults(products);
     }, [products]);
-
-    
 
     const handleSearch = (searchQuery) => {
         const calculateSimilarity = (field, query) => {
@@ -37,6 +40,23 @@ function Hashtagsearch() {
         setFilteredProducts(top5Products);
     };
 
+    const handleSortChange = (value) => {
+        let sortedData;
+        switch (value) {
+            case 'newest':
+                sortedData = [...filteredProducts].sort((a, b) => new Date(b.date) - new Date(a.date));
+                break;
+            case 'high-price':
+                sortedData = [...filteredProducts].sort((a, b) => b.price - a.price);
+                break;
+            case 'low-price':
+                sortedData = [...filteredProducts].sort((a, b) => a.price - b.price);
+                break;
+            default:
+                sortedData = filteredProducts;
+        }
+        setSortedResults(sortedData);
+    };
 
     return (
         <>
@@ -54,9 +74,17 @@ function Hashtagsearch() {
                 ]}
             />
             <SetKwd onSearch={handleSearch} />
+           
+            <div className="flex flex-row justify-end mr-20">
+                <Select defaultValue="newest" style={{ width: 200 }} onChange={handleSortChange}>
+                        <Option value="newest">新着順</Option>
+                        <Option value="high-price">価格が高い順</Option>
+                        <Option value="low-price">価格が低い順</Option>
+                    </Select>
+            </div>
             <div className="gap-10 p-20 flex flex-wrap justify-center">
-
-                {filteredProducts?.length ? filteredProducts?.map((item, index) => (
+               
+                {sortedResults?.length ? sortedResults?.map((item, index) => (
                     <ItemCard key={index} {...item} />
                 )) : <div className="h-60 pt-20"> <p className="text-gray text-3xl">No Result</p> </div>}
             </div>
