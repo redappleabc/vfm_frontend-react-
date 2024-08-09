@@ -53,7 +53,7 @@ const UserNav = () => {
         if (token) {
             dispatch(logOut());
             toast.success('ログアウトに成功しました。')
-            navigate('/auth');
+            navigate('/auth/login');
         }
     }
     const menu = (
@@ -226,7 +226,7 @@ const UserNav = () => {
                                 </Badge>
                             </Dropdown>
                         </> :
-                        <Button shape="primary" className="mx-4" icon={<PiLockLaminatedOpenFill  className="h-6 w-6 text-white-500" />} onClick={() => { navigate('/auth') }} />
+                        <Button shape="primary" className="mx-4" icon={<PiLockLaminatedOpenFill  className="h-6 w-6 text-white-500" />} onClick={() => { navigate('/auth/login') }} />
                     }
                 </div>
             </nav >

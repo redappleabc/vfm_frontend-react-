@@ -50,39 +50,38 @@ function Landing() {
   }, [products]);
 
   useEffect(() => {
-    console.log(activeIndex)
     if(activeIndex === 0) {
-      const sortedProducts = [...products]
-      setCategoryProducts(sortedProducts)
+      setCategoryProducts([...products])
     }else{
-      const sortedProducts = [...products]
-      .filter(item => item.category?.name === titles[activeIndex])
-      .slice(0, 5);
-      setCategoryProducts(sortedProducts)
+      setCategoryProducts([...products]
+        .filter(item => item.category?.name === titles[activeIndex ])
+        .slice(0, 5))
     }
   }, [activeIndex])
 
-  const handleNavigation = () => {
-    navigate('/auth')
+
+  useEffect(() => {
+    handleSortChange('');
+  },[categoryProducts])
+
+  const handleNavigation = (params) => {
+    navigate('/auth/' + params)
   }
 
   const handleSortChange = (value) => {
-    let sortedData;
-    console.log(categoryProducts)
     switch (value) {
         case 'newest':
-            sortedData = [...categoryProducts].sort((a, b) => new Date(b.date) - new Date(a.date));
+           setSortedResults([...categoryProducts].sort((a, b) => new Date(b.date) - new Date(a.date)));
             break;
         case 'high-price':
-            sortedData = [...categoryProducts].sort((a, b) => b.price - a.price);
+          setSortedResults([...categoryProducts].sort((a, b) => b.price - a.price));
             break;
         case 'low-price':
-            sortedData = [...categoryProducts].sort((a, b) => a.price - b.price);
+          setSortedResults([...categoryProducts].sort((a, b) => a.price - b.price));
             break;
         default:
-            sortedData = categoryProducts;
+        setSortedResults(categoryProducts);
     }
-    setSortedResults(sortedData);
 };
 
   const titles = ["ALL","APPAREL", "ACCESSORY", "HAIRDO", "AVATAR/CHARACTER", "MAKE UP", "ITEM"];
@@ -139,8 +138,8 @@ function Landing() {
             私たちのプラットフォームでは、<br /> あなたの創作したデジタルファッションを <br />世界中のクライアントに届ける場を提供しています。
           </p>
           {!user && <div className="flex items-center justify-center gap-10 py-10 flex-col md:flex-row">
-            <button className="bg-blue-700 text-white shadow-lg shadow-gray-400 font-bold text-sx rounded-lg px-10 py-2 hover:shadow-xs hover:bg-blue-500 transition duration-500 ease-in-out" onClick={handleNavigation}>{t("LOGIN")}</button>
-            <button className="bg-blue-700 text-white shadow-lg shadow-gray-400 font-bold text-sx rounded-lg px-10 py-2 hover:shadow-xs hover:bg-blue-500 transition duration-500 ease-in-out" onClick={handleNavigation}>{t("CREATE")}</button>
+            <button className="bg-blue-700 text-white shadow-lg shadow-gray-400 font-bold text-sx rounded-lg px-10 py-2 hover:shadow-xs hover:bg-blue-500 transition duration-500 ease-in-out" onClick={e => handleNavigation('login')}>{t("LOGIN")}</button>
+            <button className="bg-blue-700 text-white shadow-lg shadow-gray-400 font-bold text-sx rounded-lg px-10 py-2 hover:shadow-xs hover:bg-blue-500 transition duration-500 ease-in-out" onClick={e => handleNavigation('register')}>{t("CREATE")}</button>
           </div>
           }
 

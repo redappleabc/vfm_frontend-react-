@@ -11,8 +11,7 @@ const Header = () => {
   const location = useLocation();
   const { user } = useAppSelector((state) => state.user);
 
-  if (location.pathname === '/auth/login' || location.pathname === '/auth/sign-up') return null;
-  else return (
+ return (
     <>
       <TopBar />
       {user?.user?.user_type === 'Admin' ? <AdminNav /> : <UserNav />}

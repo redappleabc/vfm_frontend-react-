@@ -3,7 +3,7 @@ import { set, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Radio, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -48,7 +48,7 @@ const Auth = () => {
     const dispatch = useDispatch();
     // const authState = useSelector(state => state?.auth);
     const { token, user, error } = useSelector(state => state.user);
-
+    const { type } = useParams();
     const [value, setValue] = useState(0);
     const [username, setUsername] = useState('');
     const [userType, setUserType] = useState('Client');
@@ -68,6 +68,14 @@ const Auth = () => {
         const re = /\S+@\S+\.\S+/;
         return re.test(email);
     };
+
+    useEffect(() => {
+        if (type === 'login') {
+            setValue(0);
+          } else {
+            setValue(1);
+          }
+    },[])
 
     useEffect(() => {
         if (token) {

@@ -135,7 +135,7 @@ const AppRouter = () => {
             <Route path="creator-search" element={<CreatorSearchFallback />} />
             <Route path="request-search" element={<RequestSearchFallback />} />
             <Route path="/forgot" element={<ForgotFallback />} />
-            <Route path="/auth" element={<AuthFallback />} />
+            <Route path="/auth/:type" element={<AuthFallback />} />
             <Route path="/how-to-wear" element={<HowToWearFallback />} />
             <Route path="/terms-of-service" element={<TermsOfServiceFallback />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyFallback />} />

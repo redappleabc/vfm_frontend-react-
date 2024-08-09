@@ -16,7 +16,7 @@ const TopBar = () => {
 
     return (
         <>
-            <div className="bg-blue-800 text-white cursor-pointer" onClick={() => { navigate("/auth") }}>
+            <div className="bg-blue-800 text-white cursor-pointer" onClick={() => { navigate("/auth/login") }}>
                 <p className="m-0 text-center p-3.5 font-bold text-[13px]">{t(pagetitle)}</p>
             </div>
             <div className="p-3 flex flex-row items-center justify-start h-b-1 bg-navbar">
