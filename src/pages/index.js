@@ -14,6 +14,7 @@ import 'swiper/css/pagination'; // Import Pagination styles if using Pagination
 
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { useSelector } from "react-redux";
+import { Select, Option} from 'antd';
 
 function Landing() {
   const { t, i18n } = useTranslation();
@@ -24,6 +25,7 @@ function Landing() {
   const [newItem, setNewItem] = useState([]);
   const [newAvatar, setNewAvatar] = useState([]);
   const [categoryProducts, setCategoryProducts] = useState([]);
+  const [sortedResults, setSortedResults] = useState([]);
 
   const { products } = useSelector((state) => state.common);
 
@@ -48,18 +50,42 @@ function Landing() {
   }, [products]);
 
   useEffect(() => {
-    console.log(products)
-    const sortedProducts = [...products]
+    console.log(activeIndex)
+    if(activeIndex === 0) {
+      const sortedProducts = [...products]
+      setCategoryProducts(sortedProducts)
+    }else{
+      const sortedProducts = [...products]
       .filter(item => item.category?.name === titles[activeIndex])
       .slice(0, 5);
-    setCategoryProducts(sortedProducts)
+      setCategoryProducts(sortedProducts)
+    }
   }, [activeIndex])
 
   const handleNavigation = () => {
     navigate('/auth')
   }
 
-  const titles = ["APPAREL", "ACCESSORY", "HAIRDO", "AVATAR/CHARACTER", "MAKE UP", "ITEM"];
+  const handleSortChange = (value) => {
+    let sortedData;
+    console.log(categoryProducts)
+    switch (value) {
+        case 'newest':
+            sortedData = [...categoryProducts].sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'high-price':
+            sortedData = [...categoryProducts].sort((a, b) => b.price - a.price);
+            break;
+        case 'low-price':
+            sortedData = [...categoryProducts].sort((a, b) => a.price - b.price);
+            break;
+        default:
+            sortedData = categoryProducts;
+    }
+    setSortedResults(sortedData);
+};
+
+  const titles = ["ALL","APPAREL", "ACCESSORY", "HAIRDO", "AVATAR/CHARACTER", "MAKE UP", "ITEM"];
   return (
     <>
       {/* <Header page={"webscreens"} pagetitle={"landing_screen"} /> */}
@@ -123,6 +149,7 @@ function Landing() {
       <section id="ranking" className="pt-[45px] pb-[40px] my-28">
         <h1 className="text-badge font-extrabold text-3xl pb-10">{t("RANKING")}</h1>
         <div className="flex items-center justify-center gap-4 overflow-x-auto whitespace-nowrap pr-6 mb-10">
+          
           {titles.map((title, index) => (
             <div
               key={index}
@@ -133,10 +160,16 @@ function Landing() {
             </div>
           ))}
         </div>
-
+        <div className="flex flex-row justify-end mr-20 my-10">
+          <Select defaultValue="newest" style={{ width: 200 }} onChange={handleSortChange}>
+            <Select.Option value="newest">新着順</Select.Option>
+            <Select.Option value="high-price">価格が高い順</Select.Option>
+            <Select.Option value="low-price">価格が低い順</Select.Option>
+          </Select>
+        </div>
         <div className="flex gap-12 overflow-x-scroll pb-8 scroll-div text-2xl">
 
-          <ProductCard products={categoryProducts} isNew={false} isPopular={true} />
+          <ProductCard products={sortedResults ?? categoryProducts} isNew={false} isPopular={true} />
         </div>
       </section >
       <section id="virtual">
